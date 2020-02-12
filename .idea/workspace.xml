@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6468ccc-d879-43a5-99e2-fc8fc67954be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/contact-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BDD/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BDD/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BDD/Entities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +32,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../projetjava2m" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
@@ -91,6 +84,7 @@
       <workItem from="1581000301756" duration="931000" />
       <workItem from="1581004514785" duration="22000" />
       <workItem from="1581006791954" duration="48000" />
+      <workItem from="1581008866803" duration="29000" />
     </task>
     <servers />
   </component>
@@ -106,11 +100,15 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="691" y="398" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1581001844676" />
-    <state x="1019" y="220" key="FileChooserDialogImpl" timestamp="1581004148294">
+    <state x="1019" y="220" key="FileChooserDialogImpl" timestamp="1581008893465">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="932" y="188" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1581001262696" />
-    <state x="1019" y="220" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1581004148294" />
+    <state x="1019" y="220" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1581008893465" />
+    <state x="548" y="334" key="com.intellij.ide.util.TipDialog" timestamp="1581008867567">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="548" y="334" key="com.intellij.ide.util.TipDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1581008867567" />
     <state x="496" y="158" width="670" height="676" key="search.everywhere.popup" timestamp="1581002307116">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

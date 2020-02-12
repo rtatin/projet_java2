@@ -150,11 +150,13 @@ public class TestPersonDao {
 		// WHEN
 		List<Person> person=personDao.SelectAllWhereContain("a");
 		// THEN
-		assertThat(person).hasSize(3);
+		assertThat(person).hasSize(5);
 		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
 				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null),
 				tuple( 2,  "Skywalker", "Anakin", "Darth Vader", "0687654321", "Anakin.Skywalker@isen.yncrea.fr", "Tatouine", null),
-				tuple( 4,  "Darth", "Plagueis", "The whise", "0412345678", null, null, LocalDate.of(1970,Month.FEBRUARY,21)));
+				tuple( 3,  "Sheev", "Palpatine", "Darth Sidious", "0987654321", "Palpatine.Sheev@isen.yncrea.fr", "Naboo", LocalDate.of(1989,Month.JANUARY,13)),
+				tuple( 4,  "Darth", "Plagueis", "The whise", "0412345678", null, null, LocalDate.of(1970,Month.FEBRUARY,21)),
+				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null));
 	}
 	
 	@Test

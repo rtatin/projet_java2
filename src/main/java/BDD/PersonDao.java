@@ -265,9 +265,11 @@ public class PersonDao {
     	}
     	
         try ( Connection connection = getDataSource().getConnection()) {
-        	String sql = "SELECT * FROM person WHERE lastname  LIKE ?";
+        	String sql = "SELECT * FROM person WHERE lastname  LIKE ? OR firstname  LIKE ? OR phone  LIKE ? OR nickname  LIKE ? OR address  LIKE ? OR email  LIKE ? ";
             try (PreparedStatement statement = connection.prepareStatement(sql) )  {
-            	statement.setString(1, "%" + search + "%");
+            	for(int i=1;i<7;i++) {
+            		statement.setString(i, "%" + search + "%");
+            	}
                 try (ResultSet results= statement.executeQuery()){
                     while( results.next()) {
                         Person person=new Person(

@@ -1,6 +1,6 @@
-package entities;
+package isen.contactapp.entities;
 
-import static BDD.Connection.getDataSource;
+import static isen.contactapp.BDD.Connection.getDataSource;
 
 import java.sql.Connection;
 import java.sql.Date;

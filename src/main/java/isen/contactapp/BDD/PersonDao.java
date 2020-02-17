@@ -1,6 +1,6 @@
-package BDD;
+package isen.contactapp.BDD;
 
-import static BDD.Connection.getDataSource;
+import static isen.contactapp.BDD.Connection.getDataSource;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.Person;
+import isen.contactapp.entities.Person;
 
 public class PersonDao {
 	

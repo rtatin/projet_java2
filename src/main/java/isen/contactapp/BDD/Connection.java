@@ -1,4 +1,4 @@
-package BDD;
+package isen.contactapp.BDD;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,9 +1,8 @@
 package BDD;
 
 import static org.assertj.core.api.Assertions.tuple;
+import static isen.contactapp.BDD.Connection.getDataSource;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import static BDD.Connection.getDataSource;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,8 +14,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import BDD.PersonDao;
-import entities.Person;
+import isen.contactapp.BDD.PersonDao;
+import isen.contactapp.entities.Person;
 
 public class TestPersonDao {
 	

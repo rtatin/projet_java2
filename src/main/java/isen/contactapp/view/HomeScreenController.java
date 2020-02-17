@@ -1,7 +1,7 @@
-package view;
+package isen.contactapp.view;
 
-import isen.quiz.service.StageService;
-import isen.quiz.service.ViewService;
+import isen.contactapp.service.StageService;
+import isen.contactapp.service.ViewService;
 import javafx.fxml.FXML;
 
 public class HomeScreenController {

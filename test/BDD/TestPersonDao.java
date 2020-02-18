@@ -39,7 +39,7 @@ public class TestPersonDao {
 	
 	
 	@Test
-	public void shouldListGenres() throws Exception {
+	public void shouldListPerson() throws Exception {
 		// WHEN
 		List<Person> person = personDao.SelectAllFromPerson();
 		// THEN

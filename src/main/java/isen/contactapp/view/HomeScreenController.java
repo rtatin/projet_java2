@@ -9,6 +9,6 @@ public class HomeScreenController {
 	
 	@FXML
 	public void handleLaunchButton() throws Exception {
-		StageService.showView(ViewService.getView("QuizOverview"));
+		StageService.showView(ViewService.getView("ContactPage"));
 	}
 }

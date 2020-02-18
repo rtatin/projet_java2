@@ -5,11 +5,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.contactapp.view.HomeScreenController" >
    <children>
       <AnchorPane layoutX="64.0" layoutY="13.0" prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="222.0" layoutY="296.0" mnemonicParsing="false" text="Launch" AnchorPane.bottomAnchor="78.4" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="223.6" AnchorPane.topAnchor="296.0" />
+            <Button layoutX="222.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleLaunchButton" text="Launch" AnchorPane.bottomAnchor="78.4" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="223.6" AnchorPane.topAnchor="296.0" />
             <Text layoutX="156.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page d'accueil" textAlignment="CENTER" wrappingWidth="187.20004882812503" AnchorPane.bottomAnchor="323.474609375" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="156.79995117187497" AnchorPane.topAnchor="41.943359375">
                <font>
                   <Font size="26.0" />

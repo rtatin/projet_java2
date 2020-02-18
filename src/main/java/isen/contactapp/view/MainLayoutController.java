@@ -1,9 +1,11 @@
 package isen.contactapp.view;
 
+import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.service.StageService;
 import isen.contactapp.service.ViewService;
 
 public class MainLayoutController {
+	
 
 		public void closeApplication() {
 			StageService.closeStage();

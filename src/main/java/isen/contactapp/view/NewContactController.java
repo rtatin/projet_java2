@@ -2,6 +2,7 @@ package isen.contactapp.view;
 
 import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
+import isen.contactapp.service.PersonService;
 import isen.contactapp.service.StageService;
 import isen.contactapp.service.ViewService;
 import javafx.fxml.FXML;
@@ -56,7 +57,7 @@ public class NewContactController {
 						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
 					}/*/
 					dao.addPerson(personToAdd);
-					//PersonService.addPerson(personToAdd);
+					PersonService.addPerson(personToAdd);
 					StageService.showView(ViewService.getView("ContactPage"));
 				}
 			}

@@ -99,11 +99,23 @@ public class ContactPageController {
 	private void handleDeleteButton() {
 		this.currentPerson=dao.getPersonById(this.IdField.getText()).get(0);
 		dao.deletePerson(currentPerson.getId());
+		
+		int selectedIndex = this.PersonTable.getSelectionModel().getSelectedIndex();
+	    if (selectedIndex >= 0) {
+	    	PersonTable.getItems().remove(selectedIndex);
+	        resetView();
+	    }
 		resetView();
 	}
 	
 	@FXML
-	private void handleSearchButton() {}
+	private void handleSearchButton() {
+		if(this.searchField.getText()==null) {
+			return;
+		}
+		dao.SelectAllWhereContain(this.searchField.getText());
+		
+	}
 	
 	private void showPersonDetails(Person person) {
 		if (person == null) {

@@ -25,7 +25,7 @@
                      </columnResizePolicy>
                   </TableView>
                   <TextField fx:id="searchField" prefHeight="25.0" prefWidth="124.0" />
-                  <Button layoutX="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="search">
+                  <Button layoutX="123.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="25.0" prefWidth="53.0" text="search">
                      <contextMenu>
                         <ContextMenu>
                           <items>

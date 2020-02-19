@@ -1,6 +1,8 @@
 package BDD;
 
 import static org.assertj.core.api.Assertions.tuple;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static isen.contactapp.BDD.Connection.getDataSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -220,5 +222,23 @@ public class TestPersonDao {
 				statement.close();
 				connection.close();
 		
+	}
+	
+	@Test
+	public void shouldCheckAlreadyExistTrue() throws SQLException {
+		PersonDao personDao=new PersonDao();
+		Person personToCreate = new Person ("Master", "Yoda", "0612345678", null , "Dagobah",null,"Yoda.Master@isen.yncrea.fr");
+		personDao.CheckAlreadyExist(personToCreate);
+		//then
+		assertTrue(personDao.CheckAlreadyExist(personToCreate));
+	}
+	
+	@Test
+	public void shouldCheckAlreadyExistFalse() throws SQLException {
+		PersonDao personDao=new PersonDao();
+		Person personToCreate = new Person ("Binks","Jar jar","0612345677","Missa","Naboo",null,"jarjar@gmail.com");
+		personDao.CheckAlreadyExist(personToCreate);
+		//then
+		assertFalse(personDao.CheckAlreadyExist(personToCreate));
 	}
 }

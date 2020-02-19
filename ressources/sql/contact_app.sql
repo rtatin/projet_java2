@@ -50,7 +50,8 @@ INSERT INTO `person` (`id`, `lastname`, `firstname`, `nickname`, `phone`, `email
 (2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', 'Tatouine', NULL),
 (3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', 'Naboo', '1989-01-13'),
 (4, 'Darth', 'Plagueis', 'The whise', '0412345678', NULL, NULL, '1970-02-21'),
-(5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL);
+(5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL),
+(6, 'Droide', 'C3PO', NULL, '0787654322', NULL, 'Tatouine', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

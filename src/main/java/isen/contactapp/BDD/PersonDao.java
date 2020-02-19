@@ -233,6 +233,9 @@ public class PersonDao {
     }
 
     public Person addPerson(Person person) {
+    	if(CheckAlreadyExist(person)!=false) {
+    		return null;
+    	}
         try(Connection connection=getDataSource().getConnection()){
             String sqlQuery = "insert into person(lastname,firstname,nickname,phone,email,address,birthday) VALUES(?,?,?,?,?,?,?)";
             try(PreparedStatement statement=connection.prepareStatement(
@@ -306,4 +309,28 @@ public class PersonDao {
 			throw new RuntimeException("Your Database is dumb as a donkey", e);
 		}			
 	}
+    
+    public Boolean CheckAlreadyExist(Person person) {
+    	 try ( Connection connection = getDataSource().getConnection()) {
+			String sqlQuery = "SELECT * FROM person WHERE lastname = ? AND firstname = ?";
+			try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+				statement.setString(1, person.getLastname().toLowerCase());
+				statement.setString(2, person.getFirstname().toLowerCase());
+				
+				try (ResultSet results = statement.executeQuery()) {
+					if (results.next()) {
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+			}
+    	}
+    	 catch (SQLException e) {
+    		 throw new RuntimeException("Your Database is dumb as a donkey", e);
+ 		}
+ 	}
+    
+    
 }

@@ -314,8 +314,8 @@ public class PersonDao {
     	 try ( Connection connection = getDataSource().getConnection()) {
 			String sqlQuery = "SELECT * FROM person WHERE lastname = ? AND firstname = ?";
 			try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-				statement.setString(1, person.getLastname().toLowerCase());
-				statement.setString(2, person.getFirstname().toLowerCase());
+				statement.setString(1, person.getLastname());
+				statement.setString(2, person.getFirstname());
 				
 				try (ResultSet results = statement.executeQuery()) {
 					if (results.next()) {
@@ -332,5 +332,26 @@ public class PersonDao {
  		}
  	}
     
+public void UpdatePerson(Person person) {
+		 try ( Connection connection = getDataSource().getConnection()) {
+			String sqlQuery = "UPDATE person SET lastname=?, firstname=?, nickname=?, phone=?, email=?, address=?, birthday=? WHERE id=?";
+			try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+				statement.setString(1, person.getLastname());
+				statement.setString(2, person.getFirstname());
+				statement.setString(3, person.getNickname());
+				statement.setString(4, person.getPhone());
+				statement.setString(5, person.getMail());
+				statement.setString(6, person.getAddress());
+				statement.setDate(7, person.getBirthdate()!=null? Date.valueOf(person.getBirthdate()) : null);
+				statement.setInt(8,  person.getId());
+				statement.executeUpdate();
+				System.out.println(person.getId());
+			}
+		}
+		catch (SQLException e) {
+			 throw new RuntimeException("Your Database is dumb as a donkey", e);
+		}
+		
+	}
     
 }

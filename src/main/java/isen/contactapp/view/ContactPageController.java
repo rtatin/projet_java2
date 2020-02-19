@@ -58,7 +58,33 @@ public class ContactPageController {
 
 	
 	@FXML
-	private void handleSaveButton() {}
+	private void handleSaveButton() {
+		if (this.FirstnameField.getText()!=null) {
+			if (this.LastanemeField.getText()!=null) {
+				if (this.PhoneField.getText()!=null) {
+					Person personToUpdate=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
+					int result = Integer.parseInt(this.IdField.getText());
+					personToUpdate.setId(result);
+					
+					if(this.AddresseField.getText()!=null) {
+						personToUpdate.setAddress(AddresseField.getText());
+					}
+					if(this.NicknameField.getText()!=null) {
+						personToUpdate.setNickname(NicknameField.getText());
+					}
+					if(this.EmailField.getText()!=null) {
+						personToUpdate.setMail(EmailField.getText());
+					}
+					/*/if(this.BirthdayField.getText()!=null) {
+						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
+					}/*/
+					dao.UpdatePerson(personToUpdate);
+					//PersonService.addPerson(personToAdd);
+					resetView();
+				}
+			}
+		}
+	}
 	
 	@FXML
 	private void handleNewButton() {
@@ -80,7 +106,8 @@ public class ContactPageController {
 						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
 					}/*/
 					dao.addPerson(personToAdd);
-					PersonService.addPerson(personToAdd);
+					//PersonService.addPerson(personToAdd);
+					resetView();
 				}
 			}
 		}
@@ -90,7 +117,7 @@ public class ContactPageController {
 	private void handleDeleteButton() {
 		this.currentPerson=dao.getPersonById(this.IdField.getText()).get(0);
 		dao.deletePerson(currentPerson.getId());
-		System.out.println(currentPerson.getId());
+		resetView();
 	}
 	
 	@FXML
@@ -142,6 +169,7 @@ public class ContactPageController {
 	
 	private void resetView() {
 		this.showPersonDetails(null);
+		this.populateList();
 		this.refreshList();
 	}
 	

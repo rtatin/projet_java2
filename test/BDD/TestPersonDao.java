@@ -241,4 +241,18 @@ public class TestPersonDao {
 		//then
 		assertFalse(personDao.CheckAlreadyExist(personToCreate));
 	}
+	
+	@Test
+	public void shouldUpdatePerson() throws Exception {
+		PersonDao personDao=new PersonDao();
+		Person personToUpdate =personDao.getPersonById("1").get(0);
+		personToUpdate.setNickname( "yoyo");
+		personDao.UpdatePerson(personToUpdate);
+		// THEN
+		List<Person> person = personDao.getPersonById("1");
+		assertThat(person).hasSize(1);
+		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
+				tuple( 1,  "Master", "Yoda", "yoyo", "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null));
+				
+	}
 }

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
 import isen.contactapp.service.PersonService;
+import isen.contactapp.service.StageService;
+import isen.contactapp.service.ViewService;
 import isen.contactapp.utils.PersonValueFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -87,31 +89,11 @@ public class ContactPageController {
 	}
 	
 	@FXML
-	private void handleNewButton() {
-		if (this.FirstnameField.getText()!=null) {
-			if (this.LastanemeField.getText()!=null) {
-				if (this.PhoneField.getText()!=null) {
-					Person personToAdd=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
-					
-					if(this.AddresseField.getText()!=null) {
-						personToAdd.setAddress(AddresseField.getText());
-					}
-					if(this.NicknameField.getText()!=null) {
-						personToAdd.setNickname(NicknameField.getText());
-					}
-					if(this.EmailField.getText()!=null) {
-						personToAdd.setMail(EmailField.getText());
-					}
-					/*/if(this.BirthdayField.getText()!=null) {
-						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
-					}/*/
-					dao.addPerson(personToAdd);
-					//PersonService.addPerson(personToAdd);
-					resetView();
-				}
-			}
-		}
+	private void handleNewButton() throws Exception {
+		StageService.showView(ViewService.getView("NewContact"));
+		
 	}
+	
 	
 	@FXML
 	private void handleDeleteButton() {
@@ -177,5 +159,15 @@ public class ContactPageController {
 		this.PersonTable.refresh();
 		this.PersonTable.getSelectionModel().clearSelection();
 	}
+	
+	@FXML 
+	private void handleNewContactButton(){
+		currentPerson.setFirstname("firstname");
+		currentPerson.setLastname("lastname");
+		currentPerson.setPhone("phone");
+		showPersonDetails(currentPerson);
+		
+	}
+	
 
 }

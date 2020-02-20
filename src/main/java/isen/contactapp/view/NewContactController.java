@@ -58,8 +58,9 @@ public class NewContactController {
 					/*/if(this.BirthdayField.getText()!=null) {
 						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
 					}/*/
-					dao.addPerson(personToAdd);
+					
 					if(dao.CheckAlreadyExist(personToAdd)==false) {
+						dao.addPerson(personToAdd);
 						PersonService.addPerson(personToAdd);
 						StageService.showView(ViewService.getView("ContactPage"));
 			    	}

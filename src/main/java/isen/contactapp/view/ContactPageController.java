@@ -1,8 +1,11 @@
 package isen.contactapp.view;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
@@ -56,18 +59,16 @@ public class ContactPageController {
 	@FXML
 	TextField searchField;
 	
-	
 
 	Person currentPerson;
 	private PersonDao dao = new PersonDao();
 
 	
-	
 	@FXML
 	private void handleSaveButton() {
-		if (FirstnameField.getText().length()!=0) {
-			if (LastanemeField.getText().length()!=0) {
-				if (PhoneField.getText().length()!=0) {
+		if (this.FirstnameField.getText()!=null) {
+			if (this.LastanemeField.getText()!=null) {
+				if (this.PhoneField.getText()!=null) {
 					Person personToUpdate=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
 					int result = Integer.parseInt(this.IdField.getText());
 					personToUpdate.setId(result);
@@ -86,10 +87,6 @@ public class ContactPageController {
 					}/*/
 					dao.UpdatePerson(personToUpdate);
 					//PersonService.addPerson(personToAdd);
-					
-					int selectedIndex = this.PersonTable.getSelectionModel().getSelectedIndex();
-					PersonTable.getItems().remove(selectedIndex);
-					PersonTable.getItems().add(selectedIndex, personToUpdate);
 					resetView();
 				}
 			}
@@ -117,18 +114,12 @@ public class ContactPageController {
 	}
 	
 	@FXML
-	private void handleSearchButton() throws Exception {
-		List<Person> listOfPersons;
-		PersonTable.getItems().clear();
-		if(this.searchField.getText().length()==0) {
-			listOfPersons=dao.SelectAllFromPerson();
+	private void handleSearchButton() {
+		if(this.searchField.getText()==null) {
+			return;
 		}
-		else {
-			listOfPersons=dao.SelectAllWhereContain(this.searchField.getText());
-		}
-		for(Person var:listOfPersons) {
-			PersonTable.getItems().add(var);
-		}
+		dao.SelectAllWhereContain(this.searchField.getText());
+		
 	}
 	
 	private void showPersonDetails(Person person) {
@@ -195,5 +186,38 @@ public class ContactPageController {
 		
 	}
 	
+	public void createVcfFile() throws IOException {
+		{
+			  File f=new File(this.LastanemeField.getText()+"_"+this.FirstnameField.getText()+".vcf");
+			  FileOutputStream fop=new FileOutputStream(f);
+
+			  if(f.exists())
+			  {
+				  String str="BEGIN:VCARD\n" + 
+						     "VERSION:4.0\n" +
+						     "N:;"+this.LastanemeField.getText()+";;;\n" +
+						     "FN:"+this.FirstnameField.getText()+" "+this.LastanemeField.getText()+"\n"+
+						     "TITLE:"+NicknameField.getText()+"\n"+
+						     "TEL;TYPE=home,voice;VALUE=uri:tel:"+PhoneField.getText()+"\n"+
+						     "EMAIL:"+EmailField.getText()+"\n"+
+						     "REV:"+IdField.getText()+"\n"+
+						     "END:VCARD";
+			   fop.write(str.getBytes());
+			   //Now read the content of the vCard after writing data into it
+			   BufferedReader br = null;
+			   String sCurrentLine;
+			   br = new BufferedReader(new FileReader(this.LastanemeField.getText()+"_"+this.FirstnameField.getText()+".vcf"));
+			   while ((sCurrentLine = br.readLine()) != null)
+			   {
+			    System.out.println(sCurrentLine);
+			   }
+			   //close the output stream and buffer reader 
+			   fop.flush();
+			   fop.close();
+			   System.out.println("The data has been written");
+			  } else 
+			   System.out.println("This file does not exist");
+			 }
+	}
 
 }

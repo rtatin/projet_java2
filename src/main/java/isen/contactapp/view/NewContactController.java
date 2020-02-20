@@ -39,9 +39,9 @@ public class NewContactController {
 	
 	@FXML
 	private void handleNewButton() {
-		if (this.FirstnameField.getText()!=null) {
-			if (this.LastanemeField.getText()!=null) {
-				if (this.PhoneField.getText()!=null) {
+		if (FirstnameField.getText().length()!=0) {
+			if (LastanemeField.getText().length()!=0) {
+				if (PhoneField.getText().length()!=0) {
 					Person personToAdd=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
 					
 					if(this.AddresseField.getText()!=null) {
@@ -57,8 +57,14 @@ public class NewContactController {
 						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
 					}/*/
 					dao.addPerson(personToAdd);
-					PersonService.addPerson(personToAdd);
-					StageService.showView(ViewService.getView("ContactPage"));
+					if(dao.CheckAlreadyExist(personToAdd)==false) {
+						PersonService.addPerson(personToAdd);
+						StageService.showView(ViewService.getView("ContactPage"));
+			    	}
+					else {
+						//popup contact existe deja
+					}
+					
 				}
 			}
 		}

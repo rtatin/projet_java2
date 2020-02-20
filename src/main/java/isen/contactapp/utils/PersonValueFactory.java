@@ -13,7 +13,7 @@ public class PersonValueFactory
 
 		@Override
 		public ObservableValue<String> call(CellDataFeatures<Person, String> cellData) {
-			return new SimpleStringProperty(cellData.getValue().getLastname());
+			return new SimpleStringProperty(cellData.getValue().getFirstname());
 		}
 
 }

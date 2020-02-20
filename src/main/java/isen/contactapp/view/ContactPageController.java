@@ -1,6 +1,8 @@
 package isen.contactapp.view;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
@@ -54,16 +56,18 @@ public class ContactPageController {
 	@FXML
 	TextField searchField;
 	
+	
 
 	Person currentPerson;
 	private PersonDao dao = new PersonDao();
 
 	
+	
 	@FXML
 	private void handleSaveButton() {
-		if (this.FirstnameField.getText()!=null) {
-			if (this.LastanemeField.getText()!=null) {
-				if (this.PhoneField.getText()!=null) {
+		if (FirstnameField.getText().length()!=0) {
+			if (LastanemeField.getText().length()!=0) {
+				if (PhoneField.getText().length()!=0) {
 					Person personToUpdate=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
 					int result = Integer.parseInt(this.IdField.getText());
 					personToUpdate.setId(result);
@@ -82,6 +86,10 @@ public class ContactPageController {
 					}/*/
 					dao.UpdatePerson(personToUpdate);
 					//PersonService.addPerson(personToAdd);
+					
+					int selectedIndex = this.PersonTable.getSelectionModel().getSelectedIndex();
+					PersonTable.getItems().remove(selectedIndex);
+					PersonTable.getItems().add(selectedIndex, personToUpdate);
 					resetView();
 				}
 			}
@@ -109,12 +117,18 @@ public class ContactPageController {
 	}
 	
 	@FXML
-	private void handleSearchButton() {
-		if(this.searchField.getText()==null) {
-			return;
+	private void handleSearchButton() throws Exception {
+		List<Person> listOfPersons;
+		PersonTable.getItems().clear();
+		if(this.searchField.getText().length()==0) {
+			listOfPersons=dao.SelectAllFromPerson();
 		}
-		dao.SelectAllWhereContain(this.searchField.getText());
-		
+		else {
+			listOfPersons=dao.SelectAllWhereContain(this.searchField.getText());
+		}
+		for(Person var:listOfPersons) {
+			PersonTable.getItems().add(var);
+		}
 	}
 	
 	private void showPersonDetails(Person person) {

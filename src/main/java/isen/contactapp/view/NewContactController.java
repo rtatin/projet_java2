@@ -2,6 +2,9 @@ package isen.contactapp.view;
 
 import java.time.LocalDate;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
 import isen.contactapp.service.PersonService;
@@ -41,9 +44,7 @@ public class NewContactController {
 	
 	@FXML
 	private void handleNewButton() {
-		if (FirstnameField.getText().length()!=0) {
-			if (LastanemeField.getText().length()!=0) {
-				if (PhoneField.getText().length()!=0) {
+		if ((FirstnameField.getText().length()!=0) && (LastanemeField.getText().length()!=0) && (PhoneField.getText().length()!=0)) {
 					Person personToAdd=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
 					
 					if(this.AddresseField.getText()!=null) {
@@ -64,11 +65,10 @@ public class NewContactController {
 						PersonService.addPerson(personToAdd);
 						StageService.showView(ViewService.getView("ContactPage"));
 			    	}
-					else {
-						//popup contact existe deja
-					}
 				}
-			}
+		else {
+			 JFrame parent = new JFrame();
+			 JOptionPane.showMessageDialog(parent, "Missing mandatory information, please fill in.");
 		}
 	}
 

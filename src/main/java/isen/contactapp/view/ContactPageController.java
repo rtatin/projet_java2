@@ -1,5 +1,7 @@
 package isen.contactapp.view;
 
+import java.awt.Button;
+import java.awt.Label;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,6 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
@@ -21,6 +26,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class ContactPageController {
 	
@@ -67,15 +74,14 @@ public class ContactPageController {
 	
 	@FXML
 	private void handleSaveButton() {
-		if (FirstnameField.getText().length()!=0) {
-			if (LastanemeField.getText().length()!=0) {
-				if (PhoneField.getText().length()!=0) {
+		if ((FirstnameField.getText().length()!=0) && (LastanemeField.getText().length()!=0) && (PhoneField.getText().length()!=0)) {			
 					Person personToUpdate=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
 					int result = Integer.parseInt(this.IdField.getText());
 					personToUpdate.setId(result);
 					
 					if(this.AddresseField.getText()!=null) {
 						personToUpdate.setAddress(AddresseField.getText());
+						
 					}
 					if(this.NicknameField.getText()!=null) {
 						personToUpdate.setNickname(NicknameField.getText());
@@ -93,15 +99,17 @@ public class ContactPageController {
 					PersonTable.getItems().remove(selectedIndex);
 					PersonTable.getItems().add(selectedIndex, personToUpdate);
 					resetView();
+					
 				}
-			}
+		else {
+			 JFrame parent = new JFrame();
+			 JOptionPane.showMessageDialog(parent, "Missing mandatory informations, please fill in.");
 		}
 	}
 	
 	@FXML
 	private void handleNewButton() throws Exception {
 		StageService.showView(ViewService.getView("NewContact"));
-		
 	}
 	
 	

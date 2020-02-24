@@ -30,9 +30,13 @@ public class MainLayoutController {
 				PersonDao pers= new PersonDao();
 				List<Person>contacts=pers.SelectAllFromPerson();
 				for(Person i : contacts) {
-					File f=new File(i.getLastname()+"_"+i.getFirstname()+".vcf");
+					File theDir = new File("vcards");
+					if (!theDir.exists()) {
+						theDir.mkdir();
+					}
+					if (theDir.exists()){
+					  File f=new File(theDir,i.getLastname()+"_"+i.getFirstname()+".vcf");
 					  FileOutputStream fop=new FileOutputStream(f);
-
 					  if(f.exists())
 					  {
 						  String str="BEGIN:VCARD\n" + 
@@ -45,22 +49,12 @@ public class MainLayoutController {
 								     "REV:"+i.getId()+"\n"+
 								     "END:VCARD";
 					   fop.write(str.getBytes());
-					   //Now read the content of the vCard after writing data into it
-					   BufferedReader br = null;
-					   String sCurrentLine;
-					   br = new BufferedReader(new FileReader(i.getLastname()+"_"+i.getFirstname()+".vcf"));
-					   while ((sCurrentLine = br.readLine()) != null)
-					   {
-					    System.out.println(sCurrentLine);
-					   }
-					   //close the output stream and buffer reader 
 					   fop.flush();
 					   fop.close();
-					   System.out.println("The data has been written");
-					  } else 
-					   System.out.println("This file does not exist");
+					  } 
 					 }
 				}
+		}
 		}
 				  
 

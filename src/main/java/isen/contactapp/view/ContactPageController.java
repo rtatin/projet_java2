@@ -205,11 +205,16 @@ public class ContactPageController {
 		
 	}
 	
+	@SuppressWarnings("resource")
 	public void createVcfFile() throws IOException {
 		{
-			  File f=new File(this.LastanemeField.getText()+"_"+this.FirstnameField.getText()+".vcf");
+			File theDir = new File("vcards");
+			if (!theDir.exists()) {
+				theDir.mkdir();
+			}
+			if (theDir.exists()){
+			  File f=new File(theDir,this.LastanemeField.getText()+"_"+this.FirstnameField.getText()+".vcf");
 			  FileOutputStream fop=new FileOutputStream(f);
-
 			  if(f.exists())
 			  {
 				  String str="BEGIN:VCARD\n" + 
@@ -222,21 +227,11 @@ public class ContactPageController {
 						     "REV:"+IdField.getText()+"\n"+
 						     "END:VCARD";
 			   fop.write(str.getBytes());
-			   //Now read the content of the vCard after writing data into it
-			   BufferedReader br = null;
-			   String sCurrentLine;
-			   br = new BufferedReader(new FileReader(this.LastanemeField.getText()+"_"+this.FirstnameField.getText()+".vcf"));
-			   while ((sCurrentLine = br.readLine()) != null)
-			   {
-			    System.out.println(sCurrentLine);
-			   }
-			   //close the output stream and buffer reader 
 			   fop.flush();
 			   fop.close();
-			   System.out.println("The data has been written");
-			  } else 
-			   System.out.println("This file does not exist");
-			 }
+			  } 
+			}
+		}
 	}
 
 }

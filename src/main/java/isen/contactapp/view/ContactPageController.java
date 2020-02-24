@@ -25,6 +25,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -59,7 +60,7 @@ public class ContactPageController {
 	TextField AddresseField;
 	
 	@FXML
-	TextField BirthdayField;
+	DatePicker BirthdayField;
 	
 	@FXML
 	TextField EmailField;
@@ -101,9 +102,7 @@ public class ContactPageController {
 					if(this.EmailField.getText()!=null) {
 						personToUpdate.setMail(EmailField.getText());
 					}
-					/*/if(this.BirthdayField.getText()!=null) {
-						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
-					}/*/
+					personToUpdate.setBirthdate(this.BirthdayField.getValue());
 					
 					personToUpdate.setCategory(categoryChoiceBox.getValue());
 					dao.UpdatePerson(personToUpdate);
@@ -166,15 +165,11 @@ public class ContactPageController {
 			this.AddresseField.setText(currentPerson.getAddress());
 			this.NicknameField.setText(currentPerson.getNickname());
 			this.EmailField.setText(currentPerson.getMail());
-			if(person.getBirthdate()!=null) {
-				this.BirthdayField.setText(currentPerson.getBirthdate().toString());
-			}
-			else {
-				this.BirthdayField.setText("")
-;			}
-				String s=String.valueOf(currentPerson.getId());
-				this.IdField.setText(s);
-				this.categoryChoiceBox.setValue(currentPerson.getCategory());
+			this.BirthdayField.setValue(currentPerson.getBirthdate());
+			
+			String s=String.valueOf(currentPerson.getId());
+			this.IdField.setText(s);
+			this.categoryChoiceBox.setValue(currentPerson.getCategory());
 		}
 	}
 

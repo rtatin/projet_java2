@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -24,7 +25,7 @@
                      </columnResizePolicy>
                   </TableView>
                   <TextField fx:id="searchField" layoutX="-2.0" layoutY="1.0" prefHeight="26.0" prefWidth="112.0" />
-                  <ChoiceBox fx:id="categoryChoiceBoxSearch" layoutX="166.0" prefHeight="28.0" prefWidth="61.0" />
+                  <ChoiceBox fx:id="categoryChoiceBoxSearch" layoutX="181.0" prefHeight="28.0" prefWidth="61.0" />
                   <Button layoutX="110.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleSearchButton" text="search" />
                </children>
             </AnchorPane>
@@ -48,7 +49,6 @@
                         <TextField fx:id="AddresseField" layoutX="70.0" layoutY="139.0" prefHeight="25.0" prefWidth="297.0" />
                         
                         <Label alignment="TOP_LEFT" layoutX="16.0" layoutY="173.0" text="Birthday" />
-                        <TextField fx:id="BirthdayField" layoutX="70.0" layoutY="170.0" prefHeight="25.0" prefWidth="297.0" />
                         
                         <Label alignment="TOP_LEFT" layoutX="31.0" layoutY="206.0" text="Email" />
                         <TextField fx:id="EmailField" layoutX="70.0" layoutY="203.0" prefHeight="25.0" prefWidth="297.0" />
@@ -62,6 +62,7 @@
                         <Button mnemonicParsing="false" onAction="#handleSaveButton" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="70.0" />
                         <Button mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                         <Button layoutX="80.0" layoutY="306.0" mnemonicParsing="false" onAction="#createVcfFile" text="Create vcf" />
+                        <DatePicker fx:id="BirthdayField" layoutX="70.0" layoutY="172.0" prefHeight="26.0" prefWidth="297.0" />
                      </children>
                   </AnchorPane>
                   <Button layoutX="219.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleNewButton" text="Add" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />

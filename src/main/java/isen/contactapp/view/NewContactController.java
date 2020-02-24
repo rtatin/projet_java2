@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class NewContactController {
@@ -36,7 +37,7 @@ public class NewContactController {
 	TextField AddresseField;
 	
 	@FXML
-	TextField BirthdayField;
+	DatePicker BirthdayField;
 	
 	@FXML
 	TextField EmailField;
@@ -67,9 +68,9 @@ public class NewContactController {
 					if(this.EmailField.getText()!=null) {
 						personToAdd.setMail(EmailField.getText());
 					}
-					/*/if(this.BirthdayField.getText()!=null) {
-						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
-					}/*/
+					
+					personToAdd.setBirthdate(this.BirthdayField.valueProperty().get());
+					
 					personToAdd.setCategory(categoryChoiceBox.getValue());
 					
 					

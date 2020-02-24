@@ -20,8 +20,9 @@ public class Person {
     protected String phone;         // NOT NULL
     protected String nickname;      // NULL
     protected String address;       // NULL
-    protected LocalDate birthday;  // NULL
-    protected String email;          // NULL
+    protected LocalDate birthday;  	// NULL
+    protected String email;         // NULL
+    protected String category;		//NOT NULL
 
     public Person(String lastname,String firstname,String phone) {
     	this.firstname=firstname;
@@ -32,18 +33,20 @@ public class Person {
         this.birthday=null;
         this.email=null;
         this.id=-1;
+        this.category="Other";
     }
     
-    public Person (int id,String lastname,String firstname,String phone){
+    public Person (int id,String lastname,String firstname,String phone,String category){
     	this.firstname=firstname;
         this.phone=phone;
         this.lastname=lastname;
         this.phone=phone;
         this.id=id;
+        this.category=category;
         
     }
     
-    public Person (String lastname,String firstname,String phone,String nickname,String address,LocalDate birthday,String email){
+    public Person (String lastname,String firstname,String phone,String nickname,String address,LocalDate birthday,String email,String category){
     	this.firstname=firstname;
         this.phone=phone;
         this.lastname=lastname;
@@ -52,8 +55,9 @@ public class Person {
         this.address=address;
         this.birthday=birthday;
         this.email=email;
+        this.category=category;
     }
-    public Person (int id,String lastname,String firstname,String phone,String nickname,String address,LocalDate birthday,String email){
+    public Person (int id,String lastname,String firstname,String phone,String nickname,String address,LocalDate birthday,String email,String category){
     	this.id=id;
     	this.firstname=firstname;
         this.phone=phone;
@@ -63,7 +67,12 @@ public class Person {
         this.address=address;
         this.birthday=birthday;
         this.email=email;
+        this.category=category;
     }
+    
+   public String getCategory() {
+	   return this.category.toString();
+   }
 
     public int getId() {
         return id;
@@ -129,6 +138,9 @@ public class Person {
         this.phone = phone;
     }
     
+    public void setCategory(String category) {
+    	this.category=category;
+    }
    
     
 

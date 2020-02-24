@@ -21,7 +21,10 @@ import isen.contactapp.service.ViewService;
 import isen.contactapp.utils.PersonValueFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -65,11 +68,20 @@ public class ContactPageController {
 	TextField IdField;
 	
 	@FXML
+	ChoiceBox<String> categoryChoiceBox;
+	
+	@FXML
 	TextField searchField;
+	
+	@FXML
+	ChoiceBox<String> categoryChoiceBoxSearch;
 	
 
 	Person currentPerson;
 	private PersonDao dao = new PersonDao();
+	private ObservableList obsvCat=FXCollections.observableArrayList();
+	private ObservableList obsvCatSearch=FXCollections.observableArrayList();
+	
 
 	
 	@FXML
@@ -92,8 +104,9 @@ public class ContactPageController {
 					/*/if(this.BirthdayField.getText()!=null) {
 						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
 					}/*/
+					
+					personToUpdate.setCategory(categoryChoiceBox.getValue());
 					dao.UpdatePerson(personToUpdate);
-					//PersonService.addPerson(personToAdd);
 
 					int selectedIndex = this.PersonTable.getSelectionModel().getSelectedIndex();
 					PersonTable.getItems().remove(selectedIndex);
@@ -127,7 +140,7 @@ public class ContactPageController {
 	}
 	
 	@FXML
-	private void handleSearchButton() throws Exception {
+	private void handleSearchButton() {
 		List<Person> listOfPersons;
 		PersonTable.getItems().clear();
 		if(this.searchField.getText().length()==0) {
@@ -161,6 +174,7 @@ public class ContactPageController {
 ;			}
 				String s=String.valueOf(currentPerson.getId());
 				this.IdField.setText(s);
+				this.categoryChoiceBox.setValue(currentPerson.getCategory());
 		}
 	}
 
@@ -171,6 +185,7 @@ public class ContactPageController {
 	
 	@FXML 
 	private void initialize() {
+		
 		this.PersonColumn.setCellValueFactory(new PersonValueFactory());
 		this.populateList();
 		this.PersonTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
@@ -178,10 +193,54 @@ public class ContactPageController {
 			@Override
 			public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
 				showPersonDetails(newValue);
-
 			}
 		});
+		
+		LoadChoiceBox();
+		LoadChoiceBoxSearch();
+		
 		this.resetView();
+	}
+	
+	private void LoadChoiceBox() {
+		obsvCat.removeAll(obsvCat);
+		obsvCat.add("Friend");
+		obsvCat.add("Work");
+		obsvCat.add("Family");
+		obsvCat.add("Other");
+		categoryChoiceBox.getItems().setAll(obsvCat);
+		}
+
+	
+	private void LoadChoiceBoxSearch() {
+		obsvCatSearch.removeAll(obsvCatSearch);
+		obsvCatSearch.add("All");
+		obsvCatSearch.add("Friend");
+		obsvCatSearch.add("Work");
+		obsvCatSearch.add("Family");
+		obsvCatSearch.add("Other");
+		categoryChoiceBoxSearch.getItems().setAll(obsvCatSearch);
+		categoryChoiceBoxSearch.getSelectionModel().selectFirst();
+		
+			categoryChoiceBoxSearch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+				
+				@Override
+				public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+					
+					PersonTable.getItems().clear();
+					if (!arg2.equals("All")) {
+						PersonTable.getSelectionModel().clearSelection();
+						PersonTable.getItems().addAll(dao.getPersonByCategory(arg2));
+						PersonTable.refresh();
+					}
+					else {
+						PersonTable.getSelectionModel().clearSelection();
+						PersonTable.getItems().addAll(dao.SelectAllFromPerson());
+						PersonTable.refresh();
+						
+					}
+				}
+			});
 	}
 	
 	

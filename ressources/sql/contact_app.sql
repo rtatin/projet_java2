@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `email` varchar(100) DEFAULT NULL,
   `address` varchar(200) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
+  `category` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
@@ -45,13 +46,13 @@ CREATE TABLE IF NOT EXISTS `person` (
 -- Déchargement des données de la table `person`
 --
 
-INSERT INTO `person` (`id`, `lastname`, `firstname`, `nickname`, `phone`, `email`, `address`, `birthday`) VALUES
-(1, 'Master', 'Yoda', NULL, '0612345678', 'Yoda.Master@isen.yncrea.fr', 'Dagobah', NULL),
-(2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', 'Tatouine', NULL),
-(3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', 'Naboo', '1989-01-13'),
-(4, 'Darth', 'Plagueis', 'The whise', '0412345678', NULL, NULL, '1970-02-21'),
-(5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL),
-(6, 'Droide', 'C3PO', NULL, '0787654322', NULL, 'Tatouine', NULL);
+INSERT INTO `person` (`id`, `lastname`, `firstname`, `nickname`, `phone`, `email`, `address`, `birthday`,`category`) VALUES
+(1, 'Master', 'Yoda', NULL, '0612345678', 'Yoda.Master@isen.yncrea.fr', 'Dagobah', NULL,'Work'),
+(2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', 'Tatouine', NULL,'Other'),
+(3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', 'Naboo', '1989-01-13','Work'),
+(4, 'Darth', 'Plagueis', 'The whise', '0412345678', NULL, NULL, '1970-02-21','Family'),
+(5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL,'Friend'),
+(6, 'Droide', 'C3PO', NULL, '0787654322', NULL, 'Tatouine', NULL,'Friend');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

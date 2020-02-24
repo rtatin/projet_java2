@@ -15,7 +15,7 @@ import isen.contactapp.entities.Person;
 
 public class PersonDao {
 	
-	public  List<Person> SelectAllFromPerson() throws Exception{
+	public  List<Person> SelectAllFromPerson(){
         List<Person> listOfPersons=new ArrayList<>();
         try ( Connection connection = getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement() )  {
@@ -29,7 +29,9 @@ public class PersonDao {
                                 results.getString( "nickname" ),
                                 results.getString( "address" ),
                                 (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
+                                results.getString( "email" ),
+                                results.getString("category"));
+                        
                         listOfPersons.add(person);
 
                     }
@@ -58,7 +60,8 @@ public class PersonDao {
                                 results.getString( "nickname" ),
                                 results.getString( "address" ),
                                 (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
+                                results.getString( "email" ),
+                                results.getString("category"));
                 		listOfPersons.add(person);
                     }
                 }
@@ -69,12 +72,12 @@ public class PersonDao {
         return listOfPersons;
     }
 	
-    public  List<Person> getPersonByLastname(String lastname) {
+	public  List<Person> getPersonByCategory(String category) {
     	List<Person> listOfPersons=new ArrayList<>();
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM person WHERE lastname =? ")) {
-                statement.setString(1, lastname);
+                    "SELECT * FROM person WHERE category =? ")) {
+                statement.setString(1, category);
                 try (ResultSet results = statement.executeQuery()) {
                 	while (results.next()) {
                 		Person person=new Person(
@@ -85,7 +88,8 @@ public class PersonDao {
                                 results.getString( "nickname" ),
                                 results.getString( "address" ),
                                 (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
+                                results.getString( "email" ),
+                                results.getString("category"));
                 		listOfPersons.add(person);
                     }
                 }
@@ -95,149 +99,14 @@ public class PersonDao {
         	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
         return listOfPersons;
     }
-
-    public  List<Person> getPersonByFirstname(String name) {
-    	List<Person> listOfPersons=new ArrayList<>();
-        try (Connection connection = getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM person WHERE firstname =? ")) {
-                statement.setString(1, name);
-                try (ResultSet results = statement.executeQuery()) {
-                	while (results.next()) {
-                    	Person person=new Person(
-                                results.getInt( 1 ),
-                                results.getString( "lastname" ),
-                                results.getString( "firstname" ),
-                                results.getString( "phone" ),
-                                results.getString( "nickname" ),
-                                results.getString( "address" ),
-                                (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
-                        listOfPersons.add(person);
-                    }
-                }
-            }
-        } catch (SQLException e ){
-            //manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
-        return listOfPersons;
-    }
-
-    public List<Person> getPersonByNumber(String number) {
-    	List<Person> listOfPersons=new ArrayList<>();
-        try (Connection connection = getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM person WHERE phone =? ")) {
-                statement.setString(1, number);
-                try (ResultSet results = statement.executeQuery()) {
-                	while (results.next()) {
-                    	Person person=new Person(
-                                results.getInt( 1 ),
-                                results.getString( "lastname" ),
-                                results.getString( "firstname" ),
-                                results.getString( "phone" ),
-                                results.getString( "nickname" ),
-                                results.getString( "address" ),
-                                (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
-                        listOfPersons.add(person);
-                    }
-                }
-            }
-        } catch (SQLException e ){
-            //manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
-        return listOfPersons;
-    }
-
-    public  List<Person> getPersonByNickname(String nickname) {
-    	List<Person> listOfPersons=new ArrayList<>();
-        try (Connection connection = getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM person WHERE nickname =? ")) {
-                statement.setString(1, nickname);
-                try (ResultSet results = statement.executeQuery()) {
-                	while (results.next()) {
-                    	Person person=new Person(
-                                results.getInt( 1 ),
-                                results.getString( "lastname" ),
-                                results.getString( "firstname" ),
-                                results.getString( "phone" ),
-                                results.getString( "nickname" ),
-                                results.getString( "address" ),
-                                (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
-                        listOfPersons.add(person);
-                    }
-                }
-            }
-        } catch (SQLException e ){
-            //manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
-        return listOfPersons;
-    }
-
-    public List<Person> getPersonByEmail(String email) {
-    	List<Person> listOfPersons=new ArrayList<>();
-        try (Connection connection = getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM person WHERE email =? ")) {
-                statement.setString(1, email);
-                try (ResultSet results = statement.executeQuery()) {
-                	while (results.next()) {
-                    	Person person=new Person(
-                                results.getInt( 1 ),
-                                results.getString( "lastname" ),
-                                results.getString( "firstname" ),
-                                results.getString( "phone" ),
-                                results.getString( "nickname" ),
-                                results.getString( "address" ),
-                                (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
-                        listOfPersons.add(person);
-                    }
-                }
-            }
-        } catch (SQLException e ){
-            //manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
-        return listOfPersons;
-    }
-
-    public List<Person> getPersonByAddress(String address) {
-    	List<Person> listOfPersons=new ArrayList<>();
-        try (Connection connection = getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM person WHERE address =? ")) {
-                statement.setString(1, address);
-                try (ResultSet results = statement.executeQuery()) {
-                	while (results.next()) {
-                    	Person person=new Person(
-                                results.getInt( 1 ),
-                                results.getString( "lastname" ),
-                                results.getString( "firstname" ),
-                                results.getString( "phone" ),
-                                results.getString( "nickname" ),
-                                results.getString( "address" ),
-                                (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
-                        listOfPersons.add(person);
-                    }
-                }
-            }
-        } catch (SQLException e ){
-            //manage Exeption
-            throw new RuntimeException("Your Database is dumb as a donkey", e);
-        }
-        return listOfPersons;
-    }
+	
 
     public Person addPerson(Person person) {
     	if(CheckAlreadyExist(person)!=false) {
     		return null;
     	}
         try(Connection connection=getDataSource().getConnection()){
-            String sqlQuery = "insert into person(lastname,firstname,nickname,phone,email,address,birthday) VALUES(?,?,?,?,?,?,?)";
+            String sqlQuery = "insert into person(lastname,firstname,nickname,phone,email,address,birthday,category) VALUES(?,?,?,?,?,?,?,?)";
             try(PreparedStatement statement=connection.prepareStatement(
                     sqlQuery,Statement.RETURN_GENERATED_KEYS)){
             	statement.setString(1, person.getLastname());
@@ -247,6 +116,7 @@ public class PersonDao {
             	statement.setString(5, person.getMail());
 				statement.setString(6, person.getAddress());
 				statement.setDate(7, person.getBirthdate()!=null? Date.valueOf(person.getBirthdate()) : null);
+				statement.setString(8, person.getCategory());
 				statement.executeUpdate();
 				
 				try (ResultSet keys = statement.getGeneratedKeys()) {
@@ -283,7 +153,8 @@ public class PersonDao {
                                 results.getString( "nickname" ),
                                 results.getString( "address" ),
                                 (results.getDate("birthday") == null)? null : results.getDate("birthday").toLocalDate(),
-                                results.getString( "email" ));
+                                results.getString( "email" ),
+                                results.getString("category"));
                         listOfPersons.add(person);
 
                     }
@@ -334,7 +205,7 @@ public class PersonDao {
     
 public void UpdatePerson(Person person) {
 		 try ( Connection connection = getDataSource().getConnection()) {
-			String sqlQuery = "UPDATE person SET lastname=?, firstname=?, nickname=?, phone=?, email=?, address=?, birthday=? WHERE id=?";
+			String sqlQuery = "UPDATE person SET lastname=?, firstname=?, nickname=?, phone=?, email=?, address=?, birthday=?, category=? WHERE id=?";
 			try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
 				statement.setString(1, person.getLastname());
 				statement.setString(2, person.getFirstname());
@@ -343,7 +214,8 @@ public void UpdatePerson(Person person) {
 				statement.setString(5, person.getMail());
 				statement.setString(6, person.getAddress());
 				statement.setDate(7, person.getBirthdate()!=null? Date.valueOf(person.getBirthdate()) : null);
-				statement.setInt(8,  person.getId());
+				statement.setString(8, person.getCategory());
+				statement.setInt(9,  person.getId());
 				statement.executeUpdate();
 				System.out.println(person.getId());
 			}

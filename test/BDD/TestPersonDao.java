@@ -29,15 +29,17 @@ public class TestPersonDao {
 		Connection connection = getDataSource().getConnection();
 		Statement statement = connection.createStatement();
 		statement.executeUpdate("DELETE FROM person");
-		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday ) VALUES (1, 'Master', 'Yoda', NULL, '0612345678', 'Yoda.Master@isen.yncrea.fr', 'Dagobah', NULL)");
-		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday ) VALUES (2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', 'Tatouine', NULL)");
-		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday ) VALUES (3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', 'Naboo', '1989-01-13')");
-		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday ) VALUES (4, 'Darth', 'Plagueis', 'The whise', '0412345678', NULL, NULL, '1970-02-21')");
-		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday ) VALUES (5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL)");
-		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday ) VALUES (6, 'Droide', 'C3PO', NULL, '0787654322', NULL, 'Tatouine', NULL)");
+		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday,category ) VALUES (1, 'Master', 'Yoda', NULL, '0612345678', 'Yoda.Master@isen.yncrea.fr', 'Dagobah', NULL,'Work')");
+		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday,category ) VALUES (2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', 'Tatouine', NULL,'Other')");
+		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday,category ) VALUES (3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', 'Naboo', '1989-01-13','Work')");
+		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday,category ) VALUES (4, 'Darth', 'Plagueis', 'The whise', '0412345678', NULL, NULL, '1970-02-21','Family')");
+		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday,category ) VALUES (5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL,'Friend')");
+		statement.executeUpdate("INSERT INTO person (id,lastname,firstname,nickname,phone,email,address,birthday,category ) VALUES (6, 'Droide', 'C3PO', NULL, '0787654322', NULL, 'Tatouine', NULL,'Friend')");
 		statement.close();
 		connection.close();
 	}	
+	
+
 	
 	
 	@Test
@@ -46,13 +48,13 @@ public class TestPersonDao {
 		List<Person> person = personDao.SelectAllFromPerson();
 		// THEN
 		assertThat(person).hasSize(6);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null),
-				tuple( 2,  "Skywalker", "Anakin", "Darth Vader", "0687654321", "Anakin.Skywalker@isen.yncrea.fr", "Tatouine", null),
-				tuple( 3,  "Sheev", "Palpatine", "Darth Sidious", "0987654321", "Palpatine.Sheev@isen.yncrea.fr", "Naboo", LocalDate.of(1989,Month.JANUARY,13)),
-				tuple( 4,  "Darth", "Plagueis", "The whise", "0412345678", null, null, LocalDate.of(1970,Month.FEBRUARY,21)),
-				tuple( 5,  "Droide", "R2D2", "R2", "0787654321", null, null, null),
-				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null));
+		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday","category").containsOnly(
+				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null,"Work"),
+				tuple( 2,  "Skywalker", "Anakin", "Darth Vader", "0687654321", "Anakin.Skywalker@isen.yncrea.fr", "Tatouine", null,"Other"),
+				tuple( 3,  "Sheev", "Palpatine", "Darth Sidious", "0987654321", "Palpatine.Sheev@isen.yncrea.fr", "Naboo", LocalDate.of(1989,Month.JANUARY,13),"Work"),
+				tuple( 4,  "Darth", "Plagueis", "The whise", "0412345678", null, null, LocalDate.of(1970,Month.FEBRUARY,21),"Family"),
+				tuple( 5,  "Droide", "R2D2", "R2", "0787654321", null, null, null,"Friend"),
+				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 
 	@Test
@@ -61,8 +63,19 @@ public class TestPersonDao {
 		List<Person> person=personDao.getPersonById("6");
 		// THEN
 		assertThat(person).hasSize(1);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null));
+		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday","category").containsOnly(
+				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
+	}
+	
+	@Test
+	public void shouldListByCategory() {
+		// WHEN
+		List<Person> person = personDao.getPersonByCategory("Friend");
+		// THEN
+		assertThat(person).hasSize(2);
+		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday","category").containsOnly(
+				tuple( 5,  "Droide", "R2D2", "R2", "0787654321", null, null, null,"Friend"),
+				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 	
 	@Test
@@ -73,78 +86,6 @@ public class TestPersonDao {
 		assertThat(person).hasSize(0);
 	}
 	
-	@Test
-	 public void shouldListByLastname() {
-		// WHEN
-		List<Person> person=personDao.getPersonByLastname("Droide");
-		// THEN
-		assertThat(person).hasSize(2);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 5,  "Droide", "R2D2", "R2", "0787654321", null, null, null),
-				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null));
-	}
-	
-	@Test
-	public void shouldListByLastnameEror()  {
-		// WHEN
-		List<Person> person = personDao.getPersonByLastname("");
-		// THEN
-		assertThat(person).hasSize(0);
-	}
-	
-	@Test
-	 public void shouldListByFirstname() {
-		// WHEN
-		List<Person> person=personDao.getPersonByFirstname("Yoda");
-		// THEN
-		assertThat(person).hasSize(1);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null));
-	}
-	
-	@Test
-	public void shouldListByFirstnameEror()  {
-		// WHEN
-		List<Person> person = personDao.getPersonByFirstname("");
-		// THEN
-		assertThat(person).hasSize(0);
-	}
-	
-	@Test
-	 public void shouldListByNickname() {
-		// WHEN
-		List<Person> person=personDao.getPersonByNickname("Darth Vader");
-		// THEN
-		assertThat(person).hasSize(1);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 2,  "Skywalker", "Anakin", "Darth Vader", "0687654321", "Anakin.Skywalker@isen.yncrea.fr", "Tatouine", null));
-	}
-	
-	@Test
-	public void shouldListByNicknameEror()  {
-		// WHEN
-		List<Person> person = personDao.getPersonByNickname("");
-		// THEN
-		assertThat(person).hasSize(0);
-	}
-	
-	@Test
-	 public void shouldListByPhone() {
-		// WHEN
-		List<Person> person=personDao.getPersonByNumber("0612345678");
-		// THEN
-		assertThat(person).hasSize(1);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null));
-	}
-	
-	@Test
-	public void shouldListByPhoneEror()  {
-		// WHEN
-		List<Person> person = personDao.getPersonByNumber("");
-		// THEN
-		assertThat(person).hasSize(0);
-	}
 	
 	@Test
 	 public void shouldListSearch() {
@@ -152,12 +93,12 @@ public class TestPersonDao {
 		List<Person> person=personDao.SelectAllWhereContain("a");
 		// THEN
 		assertThat(person).hasSize(5);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null),
-				tuple( 2,  "Skywalker", "Anakin", "Darth Vader", "0687654321", "Anakin.Skywalker@isen.yncrea.fr", "Tatouine", null),
-				tuple( 3,  "Sheev", "Palpatine", "Darth Sidious", "0987654321", "Palpatine.Sheev@isen.yncrea.fr", "Naboo", LocalDate.of(1989,Month.JANUARY,13)),
-				tuple( 4,  "Darth", "Plagueis", "The whise", "0412345678", null, null, LocalDate.of(1970,Month.FEBRUARY,21)),
-				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null));
+		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday","category").containsOnly(
+				tuple( 1,  "Master", "Yoda", null, "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null,"Work"),
+				tuple( 2,  "Skywalker", "Anakin", "Darth Vader", "0687654321", "Anakin.Skywalker@isen.yncrea.fr", "Tatouine", null,"Other"),
+				tuple( 3,  "Sheev", "Palpatine", "Darth Sidious", "0987654321", "Palpatine.Sheev@isen.yncrea.fr", "Naboo", LocalDate.of(1989,Month.JANUARY,13),"Work"),
+				tuple( 4,  "Darth", "Plagueis", "The whise", "0412345678", null, null, LocalDate.of(1970,Month.FEBRUARY,21),"Family"),
+				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 	
 	@Test
@@ -172,7 +113,7 @@ public class TestPersonDao {
 	public void shouldAddPerson() throws Exception {
 		// WHEN 
 		PersonDao personDao=new PersonDao();
-		Person personToCreate = new Person ("Binks","Jar jar","0612345677","Missa","Naboo",null,"jarjar@gmail.com");
+		Person personToCreate = new Person ("Binks","Jar jar","0612345677","Missa","Naboo",null,"jarjar@gmail.com","Work");
 		// WHEN we call our DAO to
 		Person newPerson = personDao.addPerson(personToCreate);
 		// THEN
@@ -189,6 +130,7 @@ public class TestPersonDao {
 		assertThat(resultSet.getString("email")).isEqualTo("jarjar@gmail.com");
 		assertThat(resultSet.getString("address")).isEqualTo("Naboo");
 		assertThat(resultSet.getString("birthday")).isEqualTo(null);
+		assertThat(resultSet.getString("category")).isEqualTo("Work");
 		assertThat(resultSet.next()).isFalse();
 		
 		
@@ -227,7 +169,7 @@ public class TestPersonDao {
 	@Test
 	public void shouldCheckAlreadyExistTrue() throws SQLException {
 		PersonDao personDao=new PersonDao();
-		Person personToCreate = new Person ("Master", "Yoda", "0612345678", null , "Dagobah",null,"Yoda.Master@isen.yncrea.fr");
+		Person personToCreate = new Person ("Master", "Yoda", "0612345678", null , "Dagobah",null,"Yoda.Master@isen.yncrea.fr","Work");
 		personDao.CheckAlreadyExist(personToCreate);
 		//then
 		assertTrue(personDao.CheckAlreadyExist(personToCreate));
@@ -236,7 +178,7 @@ public class TestPersonDao {
 	@Test
 	public void shouldCheckAlreadyExistFalse() throws SQLException {
 		PersonDao personDao=new PersonDao();
-		Person personToCreate = new Person ("Binks","Jar jar","0612345677","Missa","Naboo",null,"jarjar@gmail.com");
+		Person personToCreate = new Person ("Binks","Jar jar","0612345677","Missa","Naboo",null,"jarjar@gmail.com","Work");
 		personDao.CheckAlreadyExist(personToCreate);
 		//then
 		assertFalse(personDao.CheckAlreadyExist(personToCreate));
@@ -251,8 +193,8 @@ public class TestPersonDao {
 		// THEN
 		List<Person> person = personDao.getPersonById("1");
 		assertThat(person).hasSize(1);
-		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday").containsOnly(
-				tuple( 1,  "Master", "Yoda", "yoyo", "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null));
+		assertThat(person).extracting( "id", "lastname","firstname","nickname","phone","email","address","birthday","category").containsOnly(
+				tuple( 1,  "Master", "Yoda", "yoyo", "0612345678", "Yoda.Master@isen.yncrea.fr", "Dagobah", null,"Work"));
 				
 	}
 }

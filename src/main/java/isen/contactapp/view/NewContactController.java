@@ -10,7 +10,13 @@ import isen.contactapp.entities.Person;
 import isen.contactapp.service.PersonService;
 import isen.contactapp.service.StageService;
 import isen.contactapp.service.ViewService;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class NewContactController {
@@ -38,9 +44,14 @@ public class NewContactController {
 	@FXML
 	TextField IdField;
 	
+	@FXML
+	ChoiceBox<String> categoryChoiceBox;
+	
 
 	Person currentPerson;
 	private PersonDao dao = new PersonDao();
+	private ObservableList obsvCat=FXCollections.observableArrayList();
+	
 	
 	@FXML
 	private void handleNewButton() {
@@ -59,6 +70,8 @@ public class NewContactController {
 					/*/if(this.BirthdayField.getText()!=null) {
 						personToAdd.setBirthdate(LocalDate.parse(this.BirthdayField.getText()));
 					}/*/
+					personToAdd.setCategory(categoryChoiceBox.getValue());
+					
 					
 					if(dao.CheckAlreadyExist(personToAdd)==false) {
 						dao.addPerson(personToAdd);
@@ -77,5 +90,29 @@ public class NewContactController {
 	private void handleBackButton() {
 		StageService.showView(ViewService.getView("ContactPage"));
 	}
+	
+	@FXML 
+	private void initialize() {
+		 LoadChoiceBox();
+	}
+	
+	private void LoadChoiceBox() {
+		obsvCat.removeAll(obsvCat);
+		obsvCat.add("Friend");
+		obsvCat.add("Work");
+		obsvCat.add("Family");
+		obsvCat.add("Other");
+		categoryChoiceBox.getItems().setAll(obsvCat);
+		categoryChoiceBox.getSelectionModel().selectLast();
+		categoryChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+				
+			}
+			
+		});
+	}
+	
 	
 }

@@ -25,7 +25,7 @@
                      </columnResizePolicy>
                   </TableView>
                   <TextField fx:id="searchField" layoutX="-2.0" layoutY="1.0" prefHeight="26.0" prefWidth="112.0" />
-                  <ChoiceBox fx:id="categoryChoiceBoxSearch" layoutX="181.0" prefHeight="28.0" prefWidth="61.0" />
+                  <ChoiceBox fx:id="categoryChoiceBoxSearch" layoutX="160.0" layoutY="-3.0" prefHeight="28.0" prefWidth="61.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="5.0" />
                   <Button layoutX="110.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleSearchButton" text="search" />
                </children>
             </AnchorPane>

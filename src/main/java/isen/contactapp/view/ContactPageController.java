@@ -276,6 +276,7 @@ public class ContactPageController {
 						     "N:;"+this.LastanemeField.getText()+";;;\n" +
 						     "FN:"+this.FirstnameField.getText()+" "+this.LastanemeField.getText()+"\n"+
 						     "TITLE:"+NicknameField.getText()+"\n"+
+						     "ADR;WORK;PREF;QUOTED-PRINTABLE:;"+AddresseField.getText()+";"+
 						     "TEL;TYPE=home,voice;VALUE=uri:tel:"+PhoneField.getText()+"\n"+
 						     "EMAIL:"+EmailField.getText()+"\n"+
 						     "REV:"+IdField.getText()+"\n"+
@@ -286,6 +287,8 @@ public class ContactPageController {
 			  } 
 			}
 		}
+		JFrame parent = new JFrame();
+		JOptionPane.showMessageDialog(parent, this.LastanemeField.getText()+" "+this.FirstnameField.getText()+ " saved, please check the vcards folder");	 
 	}
-
+	
 }

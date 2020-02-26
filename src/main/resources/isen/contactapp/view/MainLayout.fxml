@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -10,14 +12,30 @@
 	<top>
 		<MenuBar BorderPane.alignment="CENTER">
 			<menus>
-				<Menu mnemonicParsing="false" text="File">
+				<Menu mnemonicParsing="false" text="App">
 					<items>
 					<MenuItem mnemonicParsing="false" onAction="#gotoHome" text="Home" />
 					<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close" />
-                  <MenuItem mnemonicParsing="false" onAction="#exportVcf" text="Export" />
+                  <MenuItem mnemonicParsing="false" onAction="#exportVcf" text="Export By Category">
+                     <graphic>
+                     </graphic>
+                  </MenuItem>
 					</items>
 				</Menu>
+            <Menu mnemonicParsing="false" text="Save">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exportVcf" text="Export All" />
+                  <Menu mnemonicParsing="false" text="Export By Category">
+                     <items>
+                        <MenuItem id="Work" mnemonicParsing="false" onAction="#clickWork" text="Work" />
+                        <MenuItem id="Family" mnemonicParsing="false" onAction="#clickFamily" text="Family" />
+                        <MenuItem id="Friend" mnemonicParsing="false" onAction="#clickFriend" text="Friend" />
+                        <MenuItem id="Other" mnemonicParsing="false" onAction="#clickOther" text="Other" />
+                     </items>
+                  </Menu>
+               </items>
+            </Menu>
 			</menus>
 		</MenuBar>
 	</top>

@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.contactapp.view.HomeScreenController" >
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.contactapp.view.HomeScreenController">
    <children>
-      <AnchorPane layoutX="64.0" layoutY="13.0" prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button layoutX="222.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleLaunchButton" text="Launch" AnchorPane.bottomAnchor="78.4" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="223.6" AnchorPane.topAnchor="296.0" />
-            <Text layoutX="156.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page d'accueil" textAlignment="CENTER" wrappingWidth="187.20004882812503" AnchorPane.bottomAnchor="323.474609375" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="156.79995117187497" AnchorPane.topAnchor="41.943359375">
+      <BorderPane prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleLaunchButton" text="Launch" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" />
+               </BorderPane.margin></Button>
+         </bottom>
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page d'accueil" textAlignment="CENTER" wrappingWidth="187.20004882812503" BorderPane.alignment="CENTER">
                <font>
                   <Font size="26.0" />
-               </font></Text>
-            <Text layoutX="123.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenu sur l'app, appuyez sur launch pour démarrer" textAlignment="CENTER" wrappingWidth="253.123046875" AnchorPane.bottomAnchor="200.02734375" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.876953125" AnchorPane.topAnchor="168.05078125" />
-         </children>
-      </AnchorPane>
+               </font>
+               <BorderPane.margin>
+                  <Insets top="40.0" />
+               </BorderPane.margin></Text>
+         </top>
+         <center>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue sur l'app, appuyez sur launch pour démarrer" textAlignment="CENTER" wrappingWidth="492.32304763793945" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

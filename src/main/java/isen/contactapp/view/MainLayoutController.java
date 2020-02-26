@@ -65,8 +65,7 @@ public class MainLayoutController {
 					}
 				}
 				JFrame parent = new JFrame();
-				JOptionPane.showMessageDialog(parent, "Export successful, please check the vcards folder");	 
-			 
+				JOptionPane.showMessageDialog(parent, "Export successful, please check the vcards folder");	 		 
 			}
 		}
 		
@@ -97,19 +96,15 @@ public class MainLayoutController {
 		
 		@SuppressWarnings("null")
 		public void exportVcfByCategory(String category) throws Exception {
-			{
+			
 				PersonDao pers= new PersonDao();
 				List<Person>contacts=pers.SelectAllFromPerson();
 				ArrayList<Person>contactsCategory=new ArrayList<Person>();
 				for(Person j : contacts) {
-					System.out.println(j.getCategory());
-					System.out.println(category);
-					
 					if (j.getCategory().equals(category)) {
 						contactsCategory.add(j);		
 					}
 				}
-				
 				for(Person i : contactsCategory) {
 					File theDir = new File("vcards");
 					if (!theDir.exists()) {
@@ -133,11 +128,8 @@ public class MainLayoutController {
 					   fop.write(str.getBytes());
 					   fop.flush();
 					   fop.close();
-					  } 
-					}
+					  } 					
 				}
 			}
 		}
-				  
-		
 }

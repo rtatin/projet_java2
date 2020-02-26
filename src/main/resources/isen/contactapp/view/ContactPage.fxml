@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="350.0" prefWidth="685.0" styleClass="goodAnswer" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.contactapp.view.ContactPageController">
+<AnchorPane prefHeight="350.0" prefWidth="685.0" styleClass="goodAnswer" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.contactapp.view.ContactPageController">
    <children>
       <SplitPane dividerPositions="0.3601756954612006" layoutX="200.0" layoutY="74.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -61,10 +61,10 @@
                         
                         <Button mnemonicParsing="false" onAction="#handleSaveButton" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="70.0" />
                         <Button mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <Button layoutX="80.0" layoutY="306.0" mnemonicParsing="false" onAction="#createVcfFile" text="Create vcf" />
                         <DatePicker fx:id="BirthdayField" layoutX="70.0" layoutY="172.0" prefHeight="26.0" prefWidth="297.0" />
                      </children>
                   </AnchorPane>
+                  <Button mnemonicParsing="false" onAction="#createVcfFile" text="Create vcf" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" />
                   <Button layoutX="219.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleNewButton" text="Add" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                </children></AnchorPane>
         </items>

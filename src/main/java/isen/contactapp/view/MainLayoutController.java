@@ -22,19 +22,33 @@ import isen.contactapp.entities.Person;
 import isen.contactapp.service.StageService;
 import isen.contactapp.service.ViewService;
 
+/**
+ * Controller du main layout
+ * @author rtwam
+ */
 public class MainLayoutController {
 	
-
-		public void closeApplication() {
+    /**
+     * Ferme l'app
+     */
+    public void closeApplication() {
 			StageService.closeStage();
 		}
 
-		public void gotoHome() {
+    /**
+     * Retourne au menu principal
+     */
+    public void gotoHome() {
 			
 			StageService.showView(ViewService.getView("HomeScreen"));
 
 		}
-		public void exportVcf() throws Exception {
+
+    /**
+     * Export tous les contacts dans le dossier "vcf"
+     * @throws Exception
+     */
+    public void exportVcf() throws Exception {
 			{
 				PersonDao pers= new PersonDao();
 				List<Person>contacts=pers.SelectAllFromPerson();
@@ -69,32 +83,52 @@ public class MainLayoutController {
 			}
 		}
 		
-		public void clickWork() throws Exception {
+    /**
+     * Dans category, lorqu'on appuie sur work, exporte par cette catégorie
+     * @throws Exception
+     */
+    public void clickWork() throws Exception {
 			exportVcfByCategory("Work");
 			JFrame parent = new JFrame();
 			JOptionPane.showMessageDialog(parent, "Save by Work category successful, please check the vcards folder");	 
 		}
 		
-		public void clickFamily() throws Exception {
+    /**
+     * Dans category, lorqu'on appuie sur family, exporte par cette catégorie
+     * @throws Exception
+     */
+    public void clickFamily() throws Exception {
 			exportVcfByCategory("Family");
 			JFrame parent = new JFrame();
 			JOptionPane.showMessageDialog(parent, "Save by Family category successful, please check the vcards folder");	 
 		}
 		
-		public void clickFriend() throws Exception {
+    /**
+     * Dans category, lorqu'on appuie sur friend, exporte par cette catégorie
+     * @throws Exception
+     */
+    public void clickFriend() throws Exception {
 			exportVcfByCategory("Friend");
 			JFrame parent = new JFrame();
 			JOptionPane.showMessageDialog(parent, "Save by Friend category successful, please check the vcards folder");	 
 		}
 		
-		public void clickOther() throws Exception {
+    /**
+     * Dans category, lorqu'on appuie sur other, exporte par cette catégorie
+     * @throws Exception
+     */
+    public void clickOther() throws Exception {
 			exportVcfByCategory("Other");
 			JFrame parent = new JFrame();
 			JOptionPane.showMessageDialog(parent, "Save by Other category successful, please check the vcards folder");	 
 		}
 		
-		
-		@SuppressWarnings("null")
+    /**
+     * Méthode qui exporte selon le paramètre
+     * @param category
+     * @throws Exception
+     */
+    @SuppressWarnings("null")
 		public void exportVcfByCategory(String category) throws Exception {
 			
 				PersonDao pers= new PersonDao();

@@ -9,10 +9,19 @@ import javax.sql.DataSource;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
+/**
+ * Classe qui permet la connexion et la récupération de données par rapport à
+ * la bdd
+ * @author rtwam
+ */
 public class Connection {
 	
     private static MysqlDataSource dataSource;
     
+    /**
+     * Méthode qui permet la connexion à la bdd
+     * @return
+     */
     public static DataSource getDataSource() {
         Properties props =new Properties();
         try (FileInputStream fils=new FileInputStream("conf.properties")){

@@ -5,9 +5,19 @@ import java.io.IOException;
 import isen.contactapp.MainApp;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * Gestion des view
+ * @author rtwam
+ */
 public class ViewService {
 
-	public static <T> T getView(String id) {
+    /**
+     * Récupère les views
+     * @param <T>
+     * @param id
+     * @return
+     */
+    public static <T> T getView(String id) {
 		return getLoader(id).getRoot();
 	}
 

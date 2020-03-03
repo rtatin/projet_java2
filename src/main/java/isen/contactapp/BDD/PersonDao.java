@@ -13,9 +13,18 @@ import java.util.List;
 
 import isen.contactapp.entities.Person;
 
+/**
+ * Permet d'effectuer des requêtes en fonction de ce que l'on recherche
+ * @author rtwam
+ */
 public class PersonDao {
 	
-	public  List<Person> SelectAllFromPerson(){
+    /**
+     * Appel la BDD pour récupérer les personnes
+     * @return liste composée de toutes les personnes présentes dans la
+     * BDD
+     */
+    public  List<Person> SelectAllFromPerson(){
         List<Person> listOfPersons=new ArrayList<>();
         try ( Connection connection = getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement() )  {
@@ -44,7 +53,12 @@ public class PersonDao {
         return listOfPersons;
     }
 	
-	public  List<Person> getPersonById(String id) {
+    /**
+     * Récupère une liste de personnes en fonction de leur ID
+     * @param id
+     * @return liste de personnes en fonction de leur ID
+     */
+    public  List<Person> getPersonById(String id) {
     	List<Person> listOfPersons=new ArrayList<>();
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
@@ -72,7 +86,12 @@ public class PersonDao {
         return listOfPersons;
     }
 	
-	public  List<Person> getPersonByCategory(String category) {
+    /**
+     * Récupère les personnes en fonction de leur catégorie attribuée
+     * @param category
+     * @return liste composée des personnes en fonction de leur catégorie
+     */
+    public  List<Person> getPersonByCategory(String category) {
     	List<Person> listOfPersons=new ArrayList<>();
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
@@ -100,7 +119,11 @@ public class PersonDao {
         return listOfPersons;
     }
 	
-
+    /**
+     * Méthode qui ajoute une personne dans la BDD
+     * @param person
+     * @return
+     */
     public Person addPerson(Person person) {
     	if(CheckAlreadyExist(person)!=false) {
     		return null;
@@ -131,6 +154,11 @@ public class PersonDao {
         }
     }
     
+    /**
+     * Permet de rechercher une personne en fonction de search
+     * @param search élément qu'il faut chercher dans la BDD
+     * @return 
+     */
     public  List<Person> SelectAllWhereContain(String search){
     	List<Person> listOfPersons=new ArrayList<>();
     	if(search.isEmpty()) {
@@ -168,6 +196,10 @@ public class PersonDao {
         return listOfPersons;
     }
     
+    /**
+     * Supprime une personne de la BDD
+     * @param idPerson id de la personne à supprimer
+     */
     public void deletePerson(Integer idPerson) {
 		try (Connection connection =  getDataSource().getConnection()) {
 			try (PreparedStatement statement = connection.prepareStatement("DELETE FROM person WHERE id = ?")) {
@@ -181,6 +213,11 @@ public class PersonDao {
 		}			
 	}
     
+    /**
+     * Vérifie si la personne en question existe déjà dans la BDD
+     * @param person, personne pour laquelle on cherche son existence dans la BDD
+     * @return
+     */
     public Boolean CheckAlreadyExist(Person person) {
     	 try ( Connection connection = getDataSource().getConnection()) {
 			String sqlQuery = "SELECT * FROM person WHERE lastname = ? AND firstname = ?";
@@ -203,7 +240,11 @@ public class PersonDao {
  		}
  	}
     
-public void UpdatePerson(Person person) {
+    /**
+     * Met à jour les coordonnées d'une personne
+     * @param person
+     */
+    public void UpdatePerson(Person person) {
 		 try ( Connection connection = getDataSource().getConnection()) {
 			String sqlQuery = "UPDATE person SET lastname=?, firstname=?, nickname=?, phone=?, email=?, address=?, birthday=?, category=? WHERE id=?";
 			try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {

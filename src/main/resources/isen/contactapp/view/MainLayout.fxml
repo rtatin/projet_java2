@@ -15,10 +15,6 @@
 					<MenuItem mnemonicParsing="false" onAction="#gotoHome" text="Home" />
 					<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close" />
-                  <MenuItem mnemonicParsing="false" onAction="#exportVcf" text="Export By Category">
-                     <graphic>
-                     </graphic>
-                  </MenuItem>
 					</items>
 				</Menu>
             <Menu mnemonicParsing="false" text="Save">

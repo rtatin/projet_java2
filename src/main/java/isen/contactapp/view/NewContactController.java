@@ -20,6 +20,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller de newcontact
+ * @author rtwam
+ */
 public class NewContactController {
 	@FXML
 	TextField LastanemeField;
@@ -53,7 +57,11 @@ public class NewContactController {
 	private PersonDao dao = new PersonDao();
 	private ObservableList obsvCat=FXCollections.observableArrayList();
 	
-	
+        
+	/**
+        * Appui sur bouton, ajoute la personne si les champs obligatoires ont 
+        * bien été remplis
+        */
 	@FXML
 	private void handleNewButton() {
 		if ((FirstnameField.getText().length()!=0) && (LastanemeField.getText().length()!=0) && (PhoneField.getText().length()!=0)) {
@@ -86,17 +94,25 @@ public class NewContactController {
 		}
 	}
 
-
+        /**
+        * Bouton retour
+        */
 	@FXML
 	private void handleBackButton() {
 		StageService.showView(ViewService.getView("ContactPage"));
 	}
 	
+        /**
+        * initialise lechoicebox
+        */
 	@FXML 
 	private void initialize() {
 		 LoadChoiceBox();
 	}
 	
+        /**
+        * Charge le choicebox
+        */
 	private void LoadChoiceBox() {
 		obsvCat.removeAll(obsvCat);
 		obsvCat.add("Friend");

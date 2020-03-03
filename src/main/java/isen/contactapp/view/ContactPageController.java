@@ -33,6 +33,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Controller de la page de contact
+ */
 public class ContactPageController {
 	
 	@FXML
@@ -84,7 +87,10 @@ public class ContactPageController {
 	private ObservableList obsvCatSearch=FXCollections.observableArrayList();
 	
 
-	
+	/**
+        * Lorsque l'on appuie sur le bouton sauvegarder, ajoute la personne
+        * dans la BDD
+        */
 	@FXML
 	private void handleSaveButton() {
 		if ((FirstnameField.getText().length()!=0) && (LastanemeField.getText().length()!=0) && (PhoneField.getText().length()!=0)) {			
@@ -118,13 +124,19 @@ public class ContactPageController {
 			 JOptionPane.showMessageDialog(parent, "Missing mandatory informations, please fill in.");
 		}
 	}
-	
+	/**
+        * Lorque l'on appuie sur le bouton nouveau, ouvre le view pour ajouter
+        * une personne dans la BDD
+        */
 	@FXML
 	private void handleNewButton() throws Exception {
 		StageService.showView(ViewService.getView("NewContact"));
 	}
 	
-	
+	/**
+        * Lorque nous appuyons sur le bouton delete, supprime la personne 
+        * concernée de la BDD
+        */
 	@FXML
 	private void handleDeleteButton() {
 		this.currentPerson=dao.getPersonById(this.IdField.getText()).get(0);
@@ -139,6 +151,9 @@ public class ContactPageController {
 	}
 	
 	@FXML
+        /**
+        * Bouton recherche, sélectionne les personne concernées dans la BDD
+        */
 	private void handleSearchButton() {
 		List<Person> listOfPersons;
 		PersonTable.getItems().clear();
@@ -153,6 +168,9 @@ public class ContactPageController {
 		}
 	}
 	
+        /**
+        * Récupère les informations d'une personne en particulier
+        */
 	private void showPersonDetails(Person person) {
 		if (person == null) {
 			this.formPane.setVisible(false);
@@ -178,6 +196,9 @@ public class ContactPageController {
 		this.PersonTable.refresh();
 	}
 	
+        /**
+        * Initialise l'observable list et le tableau de contacts
+        */
 	@FXML 
 	private void initialize() {
 		
@@ -197,6 +218,9 @@ public class ContactPageController {
 		this.resetView();
 	}
 	
+        /**
+        * Charge la box de choix
+        */
 	private void LoadChoiceBox() {
 		obsvCat.removeAll(obsvCat);
 		obsvCat.add("Friend");
@@ -206,7 +230,9 @@ public class ContactPageController {
 		categoryChoiceBox.getItems().setAll(obsvCat);
 		}
 
-	
+	/**
+        * Charge la box de recherche
+        */
 	private void LoadChoiceBoxSearch() {
 		obsvCatSearch.removeAll(obsvCatSearch);
 		obsvCatSearch.add("All");
@@ -238,18 +264,25 @@ public class ContactPageController {
 			});
 	}
 	
-	
+	/**
+        * Reset la view avec les informations voulues
+        */
 	private void resetView() {
 		this.showPersonDetails(null);
 		this.populateList();
 		this.refreshList();
 	}
-	
+	/**
+        * Rafraichit la lisrte
+        */
 	private void refreshList() {
 		this.PersonTable.refresh();
 		this.PersonTable.getSelectionModel().clearSelection();
 	}
 	
+        /**
+        * Lorsqu'on ajoute un contact en appuyant sur le bouton
+        */
 	@FXML 
 	private void handleNewContactButton(){
 		currentPerson.setFirstname("firstname");
@@ -259,7 +292,11 @@ public class ContactPageController {
 		
 	}
 	
-	@SuppressWarnings("resource")
+    /**
+     * Méthode qui créé le fichier VCF
+     * @throws IOException
+     */
+    @SuppressWarnings("resource")
 	public void createVcfFile() throws IOException {
 		{
 			File theDir = new File("vcards");

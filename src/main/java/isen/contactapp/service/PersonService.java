@@ -7,6 +7,10 @@ import isen.contactapp.entities.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Afficher la liste observable
+ * @author rtwam
+ */
 public class PersonService {
 	private PersonDao dao = new PersonDao();
 	
@@ -27,11 +31,19 @@ public class PersonService {
 		}
 	}
 
-	public static ObservableList<Person> getPersons() {
+    /**
+     * Récupère la liste observable
+     * @return
+     */
+    public static ObservableList<Person> getPersons() {
 		return PersonServiceHolder.INSTANCE.contacts;
 	}
 
-	public static void addPerson(Person person) {
+    /**
+     *  Ajoute la personne
+     * @param person
+     */
+    public static void addPerson(Person person) {
 		PersonServiceHolder.INSTANCE.contacts.add(person);
 	}
 

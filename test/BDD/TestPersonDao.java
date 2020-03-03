@@ -20,10 +20,15 @@ import isen.contactapp.BDD.PersonDao;
 import isen.contactapp.entities.Person;
 
 public class TestPersonDao {
-	
+	/**
+	 * @rtwam
+	 * Classe qui gère les tests sur les contacts
+	 */
 	private PersonDao personDao = new PersonDao();
 	
-	
+	/**
+	 * Initialise la base de données avec des contacts préremplis
+	 */
 	@Before
 	public void initDb() throws Exception {
 		Connection connection = getDataSource().getConnection();
@@ -41,7 +46,9 @@ public class TestPersonDao {
 	
 
 	
-	
+	/**
+	 * Test si on peut bien lister les personnes présentes dans la bdd
+	 */
 	@Test
 	public void shouldListPerson() throws Exception {
 		// WHEN
@@ -57,6 +64,9 @@ public class TestPersonDao {
 				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 
+	/**
+	 * Regarde si le listage par ID est correct
+	 */
 	@Test
 	 public void shouldListById() {
 		// WHEN
@@ -67,6 +77,9 @@ public class TestPersonDao {
 				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 	
+	/**
+	 * Requête par catégorie correct ou non
+	 */
 	@Test
 	public void shouldListByCategory() {
 		// WHEN
@@ -78,6 +91,9 @@ public class TestPersonDao {
 				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 	
+	/**
+	 * Si on lui donne pas d'id, est censé retourner error
+	 */
 	@Test
 	public void shouldListByIdEror()  {
 		// WHEN
@@ -86,7 +102,9 @@ public class TestPersonDao {
 		assertThat(person).hasSize(0);
 	}
 	
-	
+	/**
+	 * Devrait bien afficher ce que l'on cherche
+	 */
 	@Test
 	 public void shouldListSearch() {
 		// WHEN
@@ -101,6 +119,9 @@ public class TestPersonDao {
 				tuple( 6,  "Droide", "C3PO", null, "0787654322", null, "Tatouine", null,"Friend"));
 	}
 	
+	/**
+	 * Pareil que l'id mais pour le search
+	 */
 	@Test
 	public void shouldListSearchEror()  {
 		// WHEN
@@ -109,6 +130,9 @@ public class TestPersonDao {
 		assertThat(person).hasSize(0);
 	}
 	
+	/**
+	 * Valider requête d'ajout de personne
+	 */
 	@Test
 	public void shouldAddPerson() throws Exception {
 		// WHEN 
@@ -150,6 +174,9 @@ public class TestPersonDao {
 		assertThat(newPerson.getMail()).isEqualTo(personToCreate.getMail());
 	}
 
+	/**
+	 * Vérifie si la requête supprime bien la personne
+	 */
 	@Test
 	public void shouldDelectPerson() throws SQLException {
 		// WHEN 
@@ -166,6 +193,9 @@ public class TestPersonDao {
 		
 	}
 	
+	/**
+	 * Checke si existe déjà, doit retourner true
+	 */
 	@Test
 	public void shouldCheckAlreadyExistTrue() throws SQLException {
 		PersonDao personDao=new PersonDao();
@@ -175,6 +205,9 @@ public class TestPersonDao {
 		assertTrue(personDao.CheckAlreadyExist(personToCreate));
 	}
 	
+	/**
+	 * Checke si existe déjà, doit retourner false
+	 */
 	@Test
 	public void shouldCheckAlreadyExistFalse() throws SQLException {
 		PersonDao personDao=new PersonDao();
@@ -184,6 +217,9 @@ public class TestPersonDao {
 		assertFalse(personDao.CheckAlreadyExist(personToCreate));
 	}
 	
+	/**
+	 * Devrait update la personne
+	 */	
 	@Test
 	public void shouldUpdatePerson() throws Exception {
 		PersonDao personDao=new PersonDao();

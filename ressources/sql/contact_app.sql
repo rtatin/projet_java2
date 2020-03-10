@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS `person` (
 --
 
 INSERT INTO `person` (`id`, `lastname`, `firstname`, `nickname`, `phone`, `email`, `address`, `birthday`,`category`) VALUES
-(1, 'Master', 'Yoda', NULL, '0612345678', 'Yoda.Master@isen.yncrea.fr', 'Dagobah', NULL,'Work'),
-(2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', 'Tatouine', NULL,'Other'),
-(3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', 'Naboo', '1989-01-13','Work'),
+(1, 'Master', 'Yoda', NULL, '0612345678', 'Yoda.Master@isen.yncrea.fr', ';;swamp;Dagobah', NULL,'Work'),
+(2, 'Skywalker', 'Anakin', 'Darth Vader', '0687654321', 'Anakin.Skywalker@isen.yncrea.fr', '13 desert;55;unknow;Tatouine', NULL,'Other'),
+(3, 'Sheev', 'Palpatine', 'Darth Sidious', '0987654321', 'Palpatine.Sheev@isen.yncrea.fr', '15 rue du pallaie;65;capitale;Naboo', '1989-01-13','Work'),
 (4, 'Darth', 'Plagueis', 'The whise', '0412345678', NULL, NULL, '1970-02-21','Family'),
 (5, 'Droide', 'R2D2', 'R2', '0787654321', NULL, NULL, NULL,'Friend'),
-(6, 'Droide', 'C3PO', NULL, '0787654322', NULL, 'Tatouine', NULL,'Friend');
+(6, 'Droide', 'C3PO', NULL, '0787654322', NULL, '24 desert;55;unknow;Tatouine', NULL,'Friend');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

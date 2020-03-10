@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="350.0" prefWidth="600.0" styleClass="goodAnswer" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.contactapp.view.NewContactController">
    <children>
-      <AnchorPane fx:id="formPane" layoutX="-1.0" prefHeight="358.0" prefWidth="600.0">
+      <AnchorPane fx:id="formPane" layoutX="-1.0" prefHeight="417.0" prefWidth="600.0">
          <children>
             <Label alignment="TOP_LEFT" layoutX="117.0" layoutY="27.0" prefHeight="17.0" prefWidth="61.0" text="Lastname*" />
             <TextField fx:id="LastanemeField" layoutX="187.0" layoutY="23.0" prefHeight="25.0" prefWidth="297.0" />
@@ -23,23 +23,34 @@
             <Label alignment="TOP_LEFT" layoutX="125.0" layoutY="113.0" text="Nickname" />
             <TextField fx:id="NicknameField" layoutX="187.0" layoutY="111.0" prefHeight="25.0" prefWidth="297.0" />
             
-            <Label alignment="TOP_LEFT" layoutX="129.0" layoutY="143.0" text="Addresse" />
-            <TextField fx:id="AddresseField" layoutX="187.0" layoutY="141.0" prefHeight="25.0" prefWidth="297.0" />
+            <Label alignment="TOP_LEFT" layoutX="133.0" layoutY="147.0" text="Birthday" />
+            <DatePicker fx:id="BirthdayField" layoutX="187.0" layoutY="143.0" prefHeight="25.0" prefWidth="297.0" />
             
-            <Label alignment="TOP_LEFT" layoutX="133.0" layoutY="175.0" text="Birthday" />
-            <DatePicker fx:id="BirthdayField" layoutX="187.0" layoutY="171.0" prefHeight="25.0" prefWidth="297.0" />
+            <Label alignment="TOP_LEFT" layoutX="148.0" layoutY="180.0" text="Email" />
+            <TextField fx:id="EmailField" layoutX="187.0" layoutY="177.0" prefHeight="25.0" prefWidth="297.0" />
             
-            <Label alignment="TOP_LEFT" layoutX="148.0" layoutY="208.0" text="Email" />
-            <TextField fx:id="EmailField" layoutX="187.0" layoutY="205.0" prefHeight="25.0" prefWidth="297.0" />
+            <Label alignment="TOP_LEFT" layoutX="166.0" layoutY="214.0" text="Id" />
+            <TextField fx:id="IdField" editable="false" layoutX="187.0" layoutY="210.0" prefHeight="25.0" prefWidth="297.0" />
             
-            <Label alignment="TOP_LEFT" layoutX="166.0" layoutY="242.0" text="Id" />
-            <TextField fx:id="IdField" editable="false" layoutX="187.0" layoutY="238.0" prefHeight="25.0" prefWidth="297.0" />
-            
-            <Label alignment="TOP_LEFT" layoutX="130.0" layoutY="276.0" text="Category" />
-            <ChoiceBox fx:id="categoryChoiceBox" layoutX="187.0" layoutY="272.0" prefHeight="25.0" prefWidth="297.0" />
+            <Label alignment="TOP_LEFT" layoutX="130.0" layoutY="248.0" text="Category" />
+            <ChoiceBox fx:id="categoryChoiceBox" layoutX="187.0" layoutY="244.0" prefHeight="25.0" prefWidth="297.0" />
             
             <Button mnemonicParsing="false" onAction="#handleNewButton" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="70.0" />
             <Button mnemonicParsing="false" onAction="#handleBackButton" text="Back" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            
+            <Label alignment="TOP_LEFT" layoutX="282.0" layoutY="286.0" text="Adress" />
+            
+            <Label alignment="TOP_LEFT" layoutX="98.0" layoutY="308.0" text="nb and name" />
+            <TextField fx:id="AddresseField" layoutX="193.0" layoutY="304.0" prefHeight="25.0" prefWidth="297.0" />
+            
+            <Label alignment="TOP_LEFT" layoutX="98.0" layoutY="347.0" text="Postal Code" />
+            <TextField fx:id="PostalCodeField" layoutX="193.0" layoutY="344.0" prefHeight="26.0" prefWidth="72.0" />
+            
+            <Label alignment="TOP_LEFT" layoutX="272.0" layoutY="348.0" text="City" />
+            <TextField fx:id="CityField" layoutX="304.0" layoutY="344.0" prefHeight="26.0" prefWidth="149.0" />
+            
+            <Label alignment="TOP_LEFT" layoutX="133.0" layoutY="386.0" text="Contry" />
+            <TextField fx:id="ContryField" layoutX="192.0" layoutY="381.0" prefHeight="26.0" prefWidth="149.0" />
             
          </children>
       </AnchorPane>

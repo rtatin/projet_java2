@@ -38,9 +38,6 @@ public class NewContactController {
 	TextField NicknameField;
 	
 	@FXML
-	TextField AddresseField;
-	
-	@FXML
 	DatePicker BirthdayField;
 	
 	@FXML
@@ -48,6 +45,18 @@ public class NewContactController {
 	
 	@FXML
 	TextField IdField;
+	
+	@FXML
+	TextField AddresseField;
+	
+	@FXML
+	TextField PostalCodeField;
+	
+	@FXML
+	TextField CityField;
+	
+	@FXML
+	TextField ContryField;
 	
 	@FXML
 	ChoiceBox<String> categoryChoiceBox;
@@ -67,9 +76,37 @@ public class NewContactController {
 		if ((FirstnameField.getText().length()!=0) && (LastanemeField.getText().length()!=0) && (PhoneField.getText().length()!=0)) {
 					Person personToAdd=new Person(this.LastanemeField.getText(),this.FirstnameField.getText(),this.PhoneField.getText());
 					
-					if(this.AddresseField.getText()!=null) {
-						personToAdd.setAddress(AddresseField.getText());
+					String adress;
+					
+					if( this.AddresseField.getText()!=null) {
+						adress=(AddresseField.getText()+";");
 					}
+					else {
+						personToAdd.setAddress(" ;");
+					}
+					if( this.PostalCodeField.getText()!=null) {
+						adress=(personToAdd.getAddress()+PostalCodeField.getText()+";");
+					}
+					else {
+						adress=(personToAdd.getAddress()+" ;");
+					}
+					if( this.CityField.getText()!=null) {
+						adress=(personToAdd.getAddress()+CityField.getText()+";");
+					}
+					else {
+						adress=(personToAdd.getAddress()+" ;");
+					}
+					if( this.ContryField.getText()!=null) {
+						adress=(personToAdd.getAddress()+ContryField.getText()+";");
+					}
+					else {
+						adress=(personToAdd.getAddress()+" ");
+					}
+					if(adress!=";;;;") {
+						
+					}
+					
+					
 					if(this.NicknameField.getText()!=null) {
 						personToAdd.setNickname(NicknameField.getText());
 					}

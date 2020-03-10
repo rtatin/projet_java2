@@ -49,7 +49,7 @@ public class PersonDao {
         }
         catch (SQLException e){
             //Manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
+        	throw new RuntimeException("You have a Database probleme", e);        }
         return listOfPersons;
     }
 	
@@ -82,7 +82,7 @@ public class PersonDao {
             }
         } catch (SQLException e ){
             //manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
+        	throw new RuntimeException("You have a Database probleme", e);        }
         return listOfPersons;
     }
 	
@@ -115,7 +115,7 @@ public class PersonDao {
             }
         } catch (SQLException e ){
             //manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);        }
+        	throw new RuntimeException("You have a Database probleme", e);        }
         return listOfPersons;
     }
 	
@@ -150,7 +150,7 @@ public class PersonDao {
             }
         }catch (SQLException e){
             //Manage Execption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);
+        	throw new RuntimeException("You have a Database probleme", e);
         }
     }
     
@@ -191,7 +191,7 @@ public class PersonDao {
         }
         catch (SQLException e){
             //Manage Exeption
-        	throw new RuntimeException("Your Database is dumb as a donkey", e);
+        	throw new RuntimeException("You have a Database probleme", e);
         	}
         return listOfPersons;
     }
@@ -209,7 +209,7 @@ public class PersonDao {
 		}
 		
 		catch (SQLException e) {
-			throw new RuntimeException("Your Database is dumb as a donkey", e);
+			throw new RuntimeException("You have a Database probleme", e);
 		}			
 	}
     
@@ -236,8 +236,7 @@ public class PersonDao {
 			}
     	}
     	 catch (SQLException e) {
-    		 throw new RuntimeException("Your Database is dumb as a donkey", e);
- 		}
+    		 throw new RuntimeException("You have a Database probleme", e); 		}
  	}
     
     /**
@@ -258,11 +257,10 @@ public class PersonDao {
 				statement.setString(8, person.getCategory());
 				statement.setInt(9,  person.getId());
 				statement.executeUpdate();
-				System.out.println(person.getId());
 			}
 		}
 		catch (SQLException e) {
-			 throw new RuntimeException("Your Database is dumb as a donkey", e);
+			 throw new RuntimeException("You have a Database probleme", e);
 		}
 		
 	}

@@ -60,9 +60,6 @@ public class ContactPageController {
 	TextField NicknameField;
 	
 	@FXML
-	TextField AddresseField;
-	
-	@FXML
 	DatePicker BirthdayField;
 	
 	@FXML
@@ -70,6 +67,18 @@ public class ContactPageController {
 	
 	@FXML
 	TextField IdField;
+	
+	@FXML
+	TextField AddresseField;
+	
+	@FXML
+	TextField PostalCodeField;
+	
+	@FXML
+	TextField CityField;
+	
+	@FXML
+	TextField ContryField;
 	
 	@FXML
 	ChoiceBox<String> categoryChoiceBox;
@@ -98,10 +107,36 @@ public class ContactPageController {
 					int result = Integer.parseInt(this.IdField.getText());
 					personToUpdate.setId(result);
 					
-					if(this.AddresseField.getText()!=null) {
-						personToUpdate.setAddress(AddresseField.getText());
-						
+					
+					
+					if( this.AddresseField.getText()!=null) {
+						personToUpdate.setAddress(AddresseField.getText()+";");
 					}
+					else {
+						personToUpdate.setAddress(" ;");
+					}
+					if( this.PostalCodeField.getText()!=null) {
+						personToUpdate.setAddress(personToUpdate.getAddress()+PostalCodeField.getText()+";");
+					}
+					else {
+						personToUpdate.setAddress(personToUpdate.getAddress()+" ;");
+					}
+					if( this.CityField.getText()!=null) {
+						personToUpdate.setAddress(personToUpdate.getAddress()+CityField.getText()+";");
+					}
+					else {
+						personToUpdate.setAddress(personToUpdate.getAddress()+" ;");
+					}
+					if( this.ContryField.getText()!=null) {
+						personToUpdate.setAddress(personToUpdate.getAddress()+ContryField.getText()+";");
+					}
+					else {
+						personToUpdate.setAddress(personToUpdate.getAddress()+" ");
+					}
+					
+				
+					
+					
 					if(this.NicknameField.getText()!=null) {
 						personToUpdate.setNickname(NicknameField.getText());
 					}
@@ -180,7 +215,24 @@ public class ContactPageController {
 			this.LastanemeField.setText(currentPerson.getLastname());
 			this.FirstnameField.setText(currentPerson.getFirstname());
 			this.PhoneField.setText(currentPerson.getPhone());
-			this.AddresseField.setText(currentPerson.getAddress());
+			
+			
+			if (currentPerson.getAddress()!=null) {
+				
+				String[] arrSplit = currentPerson.getAddress().split(";");
+				this.AddresseField.setText(arrSplit[0]);
+				this.PostalCodeField.setText(arrSplit[1]);
+				this.CityField.setText(arrSplit[2]);
+				this.ContryField.setText(arrSplit[3]);
+			}
+			else {
+				this.AddresseField.setText(currentPerson.getAddress());
+				this.PostalCodeField.setText(currentPerson.getAddress());
+				this.CityField.setText(currentPerson.getAddress());
+				this.ContryField.setText(currentPerson.getAddress());
+				
+			}
+			
 			this.NicknameField.setText(currentPerson.getNickname());
 			this.EmailField.setText(currentPerson.getMail());
 			this.BirthdayField.setValue(currentPerson.getBirthdate());

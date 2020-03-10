@@ -310,14 +310,16 @@ public class ContactPageController {
 			  {
 				  String str="BEGIN:VCARD\n" + 
 						     "VERSION:4.0\n" +
-						     "N:;"+this.LastanemeField.getText()+";;;\n" +
+						     "N:;"+this.FirstnameField.getText()+";;;\n" +
 						     "FN:"+this.FirstnameField.getText()+" "+this.LastanemeField.getText()+"\n"+
 						     "TITLE:"+NicknameField.getText()+"\n"+
-						     "ADR;WORK;PREF;QUOTED-PRINTABLE:;"+AddresseField.getText()+";"+
-						     "TEL;TYPE=home,voice;VALUE=uri:tel:"+PhoneField.getText()+"\n"+
+						     "TEL;TYPE=home,voice;VALUE=uri:"+PhoneField.getText()+"\n"+
 						     "EMAIL:"+EmailField.getText()+"\n"+
+						     "BDAY:"+BirthdayField.getValue()+"\n"+
+						     "ADR;WORK;PREF;QUOTED-PRINTABLE:;"+AddresseField.getText()+";"+
 						     "REV:"+IdField.getText()+"\n"+
 						     "END:VCARD";
+				System.out.println(BirthdayField.getValue());
 			   fop.write(str.getBytes());
 			   fop.flush();
 			   fop.close();

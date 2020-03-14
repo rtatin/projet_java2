@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:4.0
+N:;Master;;;
+FN:Yoda Master
+TITLE:null
+ADR;TYPE=HOME:;;;swamp; ;;Dagobah
+LABEL;TYPE=HOME:
+swamp, 
+DagobahTEL;TYPE=home,voice;VALUE=uri:tel:0612345678
+EMAIL:Yoda.Master@isen.yncrea.fr
+REV:1
+END:VCARD

@@ -367,8 +367,8 @@ public class ContactPageController {
 						     "TITLE:"+NicknameField.getText()+"\n"+
 						     "TEL;TYPE=home,voice;VALUE=uri:"+PhoneField.getText()+"\n"+
 						     "EMAIL:"+EmailField.getText()+"\n"+
-						     "BDAY:"+BirthdayField.getValue()+"\n"+
-						     "ADR;WORK;PREF;QUOTED-PRINTABLE:;"+AddresseField.getText()+";"+
+						     "BDAY:"+BirthdayField.getValue()+"\n"+				
+							 "ADR;TYPE=HOME:;;"+AddresseField.getText()+";"+CityField.getText()+"; ;"+PostalCodeField.getText()+";"+ContryField.getText()+"\nLABEL;TYPE=HOME:"+AddresseField.getText()+"\n"+ CityField.getText()+", " +PostalCodeField.getText()+"\n"+ContryField.getText()+
 						     "REV:"+IdField.getText()+"\n"+
 						     "END:VCARD";
 				System.out.println(BirthdayField.getValue());

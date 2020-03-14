@@ -60,6 +60,18 @@ public class MainLayoutController {
 					if (theDir.exists()){
 					  File f=new File(theDir,i.getLastname()+"_"+i.getFirstname()+".vcf");
 					  FileOutputStream fop=new FileOutputStream(f);
+					  String[] arrSplit=null;
+					  String adress=" ";
+					  String postal=" ";
+					  String city=" ";
+					  String country=" ";
+					  if(i.getAddress()!=null) {
+						arrSplit = i.getAddress().split(";");
+						adress=arrSplit[0];
+					  	postal=arrSplit[1];
+					  	city=arrSplit[2];
+					  	country =arrSplit[3];
+					  }
 					  if(f.exists())
 					  {
 						  String str="BEGIN:VCARD\n" + 
@@ -67,7 +79,7 @@ public class MainLayoutController {
 								     "N:;"+i.getLastname()+";;;\n" +
 								     "FN:"+i.getFirstname()+" "+i.getLastname()+"\n"+
 								     "TITLE:"+i.getNickname()+"\n"+
-								     "ADR;WORK;PREF;QUOTED-PRINTABLE:;Bruxelles 1200=Belgique;"+i.getAddress()+
+								     "ADR;TYPE=HOME:;;"+adress+";"+city+"; ;"+postal+";"+country+"\nLABEL;TYPE=HOME:"+adress+"\n"+ city+", " +postal+"\n"+country+								     
 								     "TEL;TYPE=home,voice;VALUE=uri:tel:"+i.getPhone()+"\n"+
 								     "EMAIL:"+i.getMail()+"\n"+
 								     "REV:"+i.getId()+"\n"+
@@ -147,6 +159,18 @@ public class MainLayoutController {
 					if (theDir.exists()){
 					  File f=new File(theDir,i.getLastname()+"_"+i.getFirstname()+".vcf");
 					  FileOutputStream fop=new FileOutputStream(f);
+					  String[] arrSplit=null;
+					  String adress=" ";
+					  String postal=" ";
+					  String city=" ";
+					  String country=" ";
+					  if(i.getAddress()!=null) {
+						arrSplit = i.getAddress().split(";");
+						adress=arrSplit[0];
+					  	postal=arrSplit[1];
+					  	city=arrSplit[2];
+					  	country =arrSplit[3];
+					  }
 					  if(f.exists())
 					  {
 						  String str="BEGIN:VCARD\n" + 
@@ -154,7 +178,7 @@ public class MainLayoutController {
 								     "N:;"+i.getLastname()+";;;\n" +
 								     "FN:"+i.getFirstname()+" "+i.getLastname()+"\n"+
 								     "TITLE:"+i.getNickname()+"\n"+
-								     "ADR;WORK;PREF;QUOTED-PRINTABLE:;Bruxelles 1200=Belgique;"+i.getAddress()+
+								     "ADR;TYPE=HOME:;;"+adress+";"+city+"; ;"+postal+";"+country+"\nLABEL;TYPE=HOME:"+adress+"\n"+ city+", " +postal+"\n"+country+								     
 								     "TEL;TYPE=home,voice;VALUE=uri:tel:"+i.getPhone()+"\n"+
 								     "EMAIL:"+i.getMail()+"\n"+
 								     "REV:"+i.getId()+"\n"+
@@ -162,7 +186,7 @@ public class MainLayoutController {
 					   fop.write(str.getBytes());
 					   fop.flush();
 					   fop.close();
-					  } 					
+					  } 	
 				}
 			}
 		}

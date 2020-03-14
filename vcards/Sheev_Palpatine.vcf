@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:4.0
+N:;Sheev;;;
+FN:Palpatine Sheev
+TITLE:Darth Sidious
+ADR;TYPE=HOME:;;15 rue du pallaie;capitale; ;65;Naboo
+LABEL;TYPE=HOME:15 rue du pallaie
+capitale, 65
+NabooTEL;TYPE=home,voice;VALUE=uri:tel:0987654321
+EMAIL:Palpatine.Sheev@isen.yncrea.fr
+REV:3
+END:VCARD

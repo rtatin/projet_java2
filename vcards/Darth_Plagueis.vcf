@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:4.0
+N:;Darth;;;
+FN:Plagueis Darth
+TITLE:The whise
+ADR;TYPE=HOME:;; ; ; ; ; 
+LABEL;TYPE=HOME: 
+ ,  
+ TEL;TYPE=home,voice;VALUE=uri:tel:0412345678
+EMAIL:null
+REV:4
+END:VCARD

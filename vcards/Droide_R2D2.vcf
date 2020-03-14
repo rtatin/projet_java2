@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:4.0
+N:;Droide;;;
+FN:R2D2 Droide
+TITLE:R2
+ADR;TYPE=HOME:;; ; ; ; ; 
+LABEL;TYPE=HOME: 
+ ,  
+ TEL;TYPE=home,voice;VALUE=uri:tel:0787654321
+EMAIL:null
+REV:5
+END:VCARD

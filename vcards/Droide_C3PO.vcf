@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:4.0
+N:;Droide;;;
+FN:C3PO Droide
+TITLE:null
+ADR;TYPE=HOME:;;24 desert;unknow; ;55;Tatouine
+LABEL;TYPE=HOME:24 desert
+unknow, 55
+TatouineTEL;TYPE=home,voice;VALUE=uri:tel:0787654322
+EMAIL:null
+REV:6
+END:VCARD

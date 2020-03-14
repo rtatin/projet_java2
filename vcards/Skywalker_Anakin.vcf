@@ -1,10 +1,12 @@
 BEGIN:VCARD
 VERSION:4.0
-N:;Anakin;;;
+N:;Skywalker;;;
 FN:Anakin Skywalker
 TITLE:Darth Vader
-TEL;TYPE=home,voice;VALUE=uri:0687654321
+ADR;TYPE=HOME:;;13 desert;unknow; ;55;Tatouine
+LABEL;TYPE=HOME:13 desert
+unknow, 55
+TatouineTEL;TYPE=home,voice;VALUE=uri:tel:0687654321
 EMAIL:Anakin.Skywalker@isen.yncrea.fr
-BDAY:2020-02-25
-ADR;WORK;PREF;QUOTED-PRINTABLE:;Tatouine;REV:2
+REV:2
 END:VCARD

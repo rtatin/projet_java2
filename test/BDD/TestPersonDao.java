@@ -92,6 +92,16 @@ public class TestPersonDao {
 	}
 	
 	/**
+	 * Requête par catégorie correct ou non
+	 */
+	@Test
+	public void shoulNotGetPersonByCategory() throws SQLException {
+		List<Person> person=personDao.getPersonByCategory("P");
+		assertThat(person).hasSize(0);
+		
+	}
+	
+	/**
 	 * Si on lui donne pas d'id, est censé retourner error
 	 */
 	@Test
@@ -174,6 +184,10 @@ public class TestPersonDao {
 		assertThat(newPerson.getMail()).isEqualTo(personToCreate.getMail());
 	}
 
+	
+	
+	
+	
 	/**
 	 * Vérifie si la requête supprime bien la personne
 	 */

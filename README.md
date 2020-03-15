@@ -1,18 +1,18 @@
-projet_java2 realiser par Tatin Raphael, Remael Achile et Vonck Theophile.
+projet_java2 réalisé par Tatin Raphael, Remael Achille et Vonck Theophile.
 
-Les information de la BDD se trouve dans le fichier conf.properties dans lequelle on retrouve le driver, l url, le login et le mots de passe.
- Nous avons utilser la base de don�e SQL grace a PHPmyadmin de wampServeur pour emerger la base de don�e. La base de donn� que nous avons utiliser se trouve dans ressources/sql
+Les informations de la BDD se trouvent dans le fichier conf.properties dans lequel se trouvent le driver, l url, le login et le mot de passe.
+ Nous avons utilisé la base de donées SQL grace a PHPmyadmin de wampServeur pour emerger la BDD. Celle que nous avons utilisé se trouve dans resources/sql
  
- Nous avons realiser les teste de requet a la base de don�e, il se trouve dans le dossier test
+ Nous avons realisé les tests de requetes a la BDD, ils se trouvent dans le dossier test
  
- notre base de don�e est constituer d une seule table person qui est composer des champs: 
- -id non null est en auto incrementation
+ notre base de don�e est constituée d une seule table person qui est composée des champs suivants: 
+ -id non null et en auto incrementation
  -firstname non null
  -lastame non null 
  -phone non null
  -bithdate
  -email
  -nickname
- -category non null, si il n est pas rensseigner il est mis par defaut a Other
- -addresse / l addresse est une concatenation des AddresseField , PostalCodeField ,CityField et ContryField separer par ";" pour permetre de realiser une fonction split
+ -category non null, s'il n est pas renseigné, il est mis par defaut a Other
+ -adresse / l adresse est une concatenation des AddresseField , PostalCodeField, CityField et ContryField séparés par ";" pour permettre de realiser une fonction split
  
